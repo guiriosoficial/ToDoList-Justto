@@ -1,6 +1,6 @@
-# todo-justto
+# todo-list-justto
 
-> ToDo List for Justto
+> This is a Todo List made for Justto with Vue.js
 
 ## Build Setup
 

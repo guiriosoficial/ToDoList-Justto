@@ -124,6 +124,12 @@ ul {
   cursor: pointer;
   transition: 0.2s ease-in-out;
 }
+
+.btn-icon:focus {
+  box-shadow: none;
+  border: none;
+  outline: 0;
+}
 /* == END OPTIONS BUTTON == */
 
 /* === REMOVE ALL BUTTON === */
@@ -150,6 +156,12 @@ ul {
   transform: translateY(-50%);
   cursor: pointer;
   transition: 0.1s ease-in-out;
+}
+
+.btn-rmv-all:focus {
+  box-shadow: none;
+  border: none;
+  outline: 0;
 }
 
 .btn-rmv-all .fas {

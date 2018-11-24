@@ -72,6 +72,12 @@ export default {
   padding: 0px 26px;
 }
 
+.plus-icon:focus {
+  box-shadow: none;
+  border: none;
+  outline: 0;
+}
+
 .fas {
   display: inline;
 }
