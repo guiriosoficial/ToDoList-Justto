@@ -23,6 +23,7 @@ export default {
     addTask () {                                  // *Adding a New Task*
       if (this.newTask !== '') {                  // Check if the input is filled or empty
         this.$emit('send-task', this.newTask)     // Send the Task to taskList
+        this.newTask = ''                         // Clear Input
       }
     }
   },
