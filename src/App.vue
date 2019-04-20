@@ -23,7 +23,6 @@
 import todoBar from './components/todoBar'
 import taskList from './components/taskList'
 import about from './components/about'
-import error404 from './components/error404'
 // === END IMPORTS === //
 
 // === EXPORT DEFAULT === //
@@ -34,7 +33,6 @@ export default {
     todoBar,
     taskList,
     about,
-    error404
   }
 }
 // = END EXPORT DEFAULT = //

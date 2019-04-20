@@ -1,17 +1,14 @@
 <template>
-  <div>
-
-    <p><i class="fas fa-arrow-up" /><br> You can insert your tasks here</p>
-
-  </div>
+    <p>
+      <i class="fas fa-arrow-up" /><br>
+      You can insert your tasks here
+    </p>
 </template>
 
 <script>
-// === EXPORT DEFAULT === //
-export default {
-  name: 'hello'
-}
-// = END EXPORT DEFAULT = //
+  export default {
+    name: 'hello',
+  };
 </script>
 
 <style scoped>

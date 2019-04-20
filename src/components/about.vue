@@ -6,7 +6,7 @@
     <p>I have 8 months experience as Web Designer and now I'm fetchin to grow up like a Front-end Developer.</p>
 
     <div class="btn-center">
-      <router-link to="/taskList" class="btn-return"><i class="fas fa-arrow-left" /> &nbsp; RETURN</router-link>
+      <router-link to="/" class="btn-return"><i class="fas fa-arrow-left" /> &nbsp; RETURN</router-link>
     </div>
 
   </div>
