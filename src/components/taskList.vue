@@ -1,82 +1,69 @@
 <template>
-    <ul>
-
-      <taskInput v-on:send-task="addTask" />
-      <!-- Task Input Will Be Render Here -->
-
-      <!-- If Task List Is Empty, Render Hello -->
-      <hello v-if="todoList == 0" />
-
-      <!-- If Task List Is Not Empty, Render List -->
-      <div class="overflow" v-else>
-        <!-- Loop to Render the List with All Tasks -->
-        <taskItem v-for="(todo,index) in todoList" @remove-task="removeTask" @edit-task="saveInCache" :todo="todo" :key="index" />
-        <!-- The Tasks Items Will Be Render Here -->
-        <button class="btn-rmv-all" @click="removeAll" title="Revome All Tasks"><i class="fas fa-trash-alt" /></button>
-      </div>
-
-    </ul>
+  <ul>
+    <taskInput @send-task="addTask" />
+    <hello v-if="todoList == 0" />
+    <div v-else class="overflow">
+      <taskItem
+        v-for="(todo, index) in todoList"
+        :key="index"
+        :todo="todo"
+        @remove-task="removeTask"
+        @edit-task="saveInCache" />
+      <button class="btn-rmv-all" title="Revome All Tasks" @click="removeAll">
+        <i class="fas fa-trash-alt" />
+      </button>
+    </div>
+  </ul>
 </template>
 
 <script>
-// ====== IMPORTS ====== //
 import taskInput from './taskInput'
 import hello from './hello'
 import taskItem from './taskItem'
-// ==== END IMPORTS ==== //
 
-// === EXPORT DEFAULT === //
 export default {
-  name: 'taskList',
+  name: 'TaskList',
   components: {
     taskInput,
     hello,
     taskItem
   },
-
   data () {
     return {
-      todoList: []                                                        // Array with Task List
+      todoList: []
     }
   },
-
-  methods: {
-    addTask (todo) {                                                      // *Add Tasks at List*
-      this.todoList.push({name: todo})                                    // Push Task to List
-      this.saveInCache(todo)                                              // Save in Cache
-    },
-
-    removeTask (todo) {                                                   // *Remove Tasks from List*
-      const index = this.todoList.indexOf(todo)                           // Get the Task Inde n Array
-      this.todoList.splice(index, 1)                                      // Remove Object from Array
-      this.saveInCache(todo)                                              // Save In Cache
-    },
-
-    removeAll (todo) {                                                    // *Remove All Tasks from List*
-      if (confirm('Are you sure you want to remove all tasks?')) {        // Alert to Confirm Remotion (Avoit Miss Clicks)
-        this.todoList.splice(todo)                                        // Remove All Objects from Array
-        this.saveInCache(todo)                                            // Save In Cache
-      }
-    },
-
-    saveInCache (todo) {                                                  // *Saves Task List in Cache*
-      const parsed = JSON.stringify(this.todoList)                        // Serialize Values with JSON
-      localStorage.setItem('todoList', parsed)                            // Save Task in Cache
-    }
-  },
-
   mounted () {
-    if (localStorage.getItem('todoList')) {                                // Get the List
+    if (localStorage.getItem('todoList')) {
       try {
-        this.todoList = JSON.parse(localStorage.getItem('todoList'))       // Unserialize Values with JSON
+        this.todoList = JSON.parse(localStorage.getItem('todoList'))
+      } catch (error) {
+        localStorage.removeItem('todoList')
       }
-      catch (error) {
-        localStorage.removeItem('todoList')                                // Erase Array if Somethig Wrong
+    }
+  },
+  methods: {
+    addTask (todo) {
+      this.todoList.push({ name: todo })
+      this.saveInCache(todo)
+    },
+    removeTask (todo) {
+      const index = this.todoList.indexOf(todo)
+      this.todoList.splice(index, 1)
+      this.saveInCache(todo)
+    },
+    removeAll (todo) {
+      if (confirm('Are you sure you want to remove all tasks?')) {
+        this.todoList.splice(todo)
+        this.saveInCache(todo)
       }
+    },
+    saveInCache () {
+      const parsed = JSON.stringify(this.todoList)
+      localStorage.setItem('todoList', parsed)
     }
   }
 }
-// = END EXPORT DEFAULT = //
 </script>
 
 <style>
@@ -135,10 +122,9 @@ ul {
 /* === REMOVE ALL BUTTON === */
 .btn-rmv-all {
   position: absolute;
-  left: 45%;
+  left: 50%;
+  transform: translate(-50%, -36%);
   top: 100%;
-  transform: translateX(-50%);
-  transform: translateY(-36%);
   transition: 0.1s ease-in-out;
   border-radius: 50%;
   padding: 8px;
@@ -153,7 +139,7 @@ ul {
 }
 
 .btn-rmv-all:hover {
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   cursor: pointer;
   transition: 0.1s ease-in-out;
 }
@@ -172,7 +158,7 @@ ul {
 /* ===== MEDIA SCREEN ===== */
 @media screen and (max-width: 1024px) {
   .btn-rmv-all {
-    transform: translateY(-46%);
+    transform: translateY(-50%, -46%);
   }
 }
 /* === END MEDIA SCREEN === */

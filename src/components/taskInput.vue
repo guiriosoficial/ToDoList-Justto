@@ -1,40 +1,41 @@
 <template>
   <div class="input-box">
-
     <li>
       <div class="tasks">
-        <input class="input-task" v-model="newTask" @keyup.enter="addTask" type="text" placeholder="Insert a New Task Here" autofocus>
+        <input
+          v-model="newTask"
+          class="input-task"
+          placeholder="Insert a New Task Here"
+          type="text"
+          autofocus
+          @keyup.enter="addTask">
       </div>
-
       <div class="options">
-        <button class="btn-icon plus-icon" @click="addTask" title="Add Task"><i class="fas fa-plus" /></button>
+        <button class="btn-icon plus-icon" title="Add Task" @click="addTask">
+          <i class="fas fa-plus" />
+        </button>
       </div>
     </li>
-
   </div>
 </template>
 
 <script>
-// === EXPORT DEFAULT === //
 export default {
-  name: 'taskInput',
-
-  methods: {
-    addTask () {                                  // *Adding a New Task*
-      if (this.newTask !== '') {                  // Check if the input is filled or empty
-        this.$emit('send-task', this.newTask)     // Send the Task to taskList
-        this.newTask = ''                         // Clear Input
-      }
-    }
-  },
-
+  name: 'TaskInput',
   data () {
     return {
-      newTask: ''                                 // Task Name Variable
+      newTask: ''
+    }
+  },
+  methods: {
+    addTask () {
+      if (this.newTask !== '') {
+        this.$emit('send-task', this.newTask)
+        this.newTask = ''
+      }
     }
   }
 }
-// = END EXPORT DEFAULT = //
 </script>
 
 <style scoped>

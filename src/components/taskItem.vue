@@ -1,55 +1,74 @@
 <template>
   <div class="list-item">
-
-    <!-- If Task Edition Is Not Active -->
     <li v-show="!edit">
-      <div class="tasks">{{ todo.name }}</div>
+      <div class="tasks">
+        {{ todo.name }}
+      </div>
       <div class="options">
-        <div><button class="btn-icon" @click="editTask()"><i class="far fa-edit" /></button></div>
-        <div><button class="btn-icon" @click="removeTask(todo)"><i class="far fa-trash-alt" /></button></div>
+        <div>
+          <button class="btn-icon" @click="editTask()">
+            <i class="far fa-edit" />
+          </button>
+        </div>
+        <div>
+          <button class="btn-icon" @click="removeTask(todo)">
+            <i class="far fa-trash-alt" />
+          </button>
+        </div>
       </div>
     </li>
-
-    <!-- If Task Edition Is Active -->
     <li v-show="edit">
       <div class="tasks">
-        <input class="task-input-edit" v-model="todo.name" v-on:keyup.enter="confirm()" type="text" ref="task">
+        <input
+          ref="task"
+          v-model="todo.name"
+          class="task-input-edit"
+          type="text"
+          @keyup.enter="confirm()">
       </div>
       <div class="options">
-        <div><button class="btn-icon"  @click="confirm()"><i class="fas fa-check" /></button></div>
+        <div>
+          <button class="btn-icon" @click="confirm()">
+            <i class="fas fa-check" />
+          </button>
+        </div>
       </div>
     </li>
-
   </div>
 </template>
 
 <script>
-// === EXPORT DEFAULT === //
 export default {
-  name: 'taskItem',
-  props: ['todo'],                                        // Take todoList Object from taskList Component
-
-  methods: {
-    removeTask (todo) {                                   // *Removing a Task*
-      this.$emit('remove-task', todo)                     // Send the Task to taskList to be excluded
-    },
-    editTask () {                                         // *Editing a Task*
-      this.edit = true                                    // Enables Task Edition
-      this.$nextTick(() => this.$refs.task.focus())       // Put the Focus on Input
-    },
-    confirm (todo) {                                      // *Confirming a Edition*
-      this.edit = false                                   // Disables Task Edition
-      this.$emit('edit-task', todo)                       // Save in Cache
+  name: 'TaskItem',
+  props: {
+    todo: {
+      type: String,
+      required: true,
+      default: 'It\'s Empty'
     }
-
   },
   data () {
     return {
-      edit: false                                         // Var to Enable or Disable Task Edition
+      edit: false
+    }
+  },
+  methods: {
+    removeTask (todo) {
+      this.$emit('remove-task', todo)
+    },
+    editTask () {
+      this.edit = true
+      this.$nextTick(() => this.$refs.task.focus())
+    },
+    confirm (todo) {
+      if (todo !== '') {
+        this.edit = false
+        this.$emit('edit-task', todo)
+      }
     }
   }
 }
-// = END EXPORT DEFAULT = //
+
 </script>
 
 <style scoped>

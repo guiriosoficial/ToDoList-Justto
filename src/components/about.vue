@@ -1,28 +1,30 @@
 <template>
   <div class="overflow">
-
-    <p>Hello, I'm Guilherme Rios, 20 years old and this is my 'TODO List' made for a stage test at JUSTTO.</p>
-    <p>I'm Formed in Computer Network Technician from SENAI, and now, I study Computer Science at Bilac College.</p>
-    <p>I have 8 months experience as Web Designer and now I'm fetchin to grow up like a Front-end Developer.</p>
-
-    <div class="btn-center">
-      <router-link to="/" class="btn-return"><i class="fas fa-arrow-left" /> &nbsp; RETURN</router-link>
-    </div>
-
+    <p>
+      Hello, I'm Guilherme Rios, 21 years old and this is my first application with Vue.JS.<br>
+      This 'TODO List' was my challenge for an internship at JUSTTO.<br>
+      Yes, I got the job.
+    </p>
+    <router-link to="/" class="btn-return">
+      <i class="fas fa-arrow-left" />
+      &nbsp; RETURN
+    </router-link>
   </div>
 </template>
 
 <script>
-// === EXPORT DEFAULT === //
 export default {
-  name: 'about'
+  name: 'About'
 }
-// = END EXPORT DEFAULT = //
 </script>
 
 <style scoped>
 /* ====== TEXT BOX ====== */
 .overflow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 100%;
   overflow-y: auto;
 }
@@ -33,18 +35,15 @@ p {
   font-size: 2em;
   color: #ccc;
   text-align: center;
-  line-height: 1.3em;
+}
+br {
+  line-height: 2em;
 }
 /* ==== END TEXT BOX ==== */
 
 /* === RETURN BUTTON === */
-.btn-center {
-  display: flex;
-  justify-content: center;
-  margin: 26px auto;
-}
-
 .btn-return {
+  margin-top: 38px;
   text-decoration: none;
   color: #fff;
   background-color: #1c75db;

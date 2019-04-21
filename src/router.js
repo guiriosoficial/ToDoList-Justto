@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import taskList from '@/components/taskList';
-import about from '@/components/about';
+import taskList from '@/components/taskList.vue';
+import about from '@/components/about.vue';
 
 Vue.use(Router);
 

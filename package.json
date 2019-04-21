@@ -1,5 +1,5 @@
 {
-  "name": "justto-todolist",
+  "name": "todolist-justto",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -30,10 +30,28 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
+      "plugin:vue/recommended",
+      "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "vue/html-closing-bracket-newline": [
+        "error",
+        {
+          "singleline": "never",
+          "multiline": "never"
+        }
+      ],
+      "vue/max-attributes-per-line": [
+        2,
+        {
+          "singleline": 3,
+          "multiline": {
+            "max": 3,
+            "allowFirstLine": false
+          }
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

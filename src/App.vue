@@ -1,41 +1,23 @@
 <template>
   <div class="container">
     <div class="center">
-      <div>
-
-        <todoBar>
-          <!-- Menu Will Be Render Here -->
-        </todoBar>
-
-        <main class="view">
-          <router-view>
-            <!-- Components Will Be Render Here -->
-          </router-view>
-        </main>
-
-      </div>
+      <todoBar />
+      <main class="view">
+        <router-view />
+      </main>
     </div>
   </div>
 </template>
 
 <script>
-// ===== IMPORTS ===== //
 import todoBar from './components/todoBar'
-import taskList from './components/taskList'
-import about from './components/about'
-// === END IMPORTS === //
 
-// === EXPORT DEFAULT === //
 export default {
   name: 'App',
-
   components: {
-    todoBar,
-    taskList,
-    about,
+    todoBar
   }
 }
-// = END EXPORT DEFAULT = //
 </script>
 
 <style>
@@ -57,6 +39,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .center {
@@ -64,11 +47,12 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+  border-radius: 12px;
 }
 
 .view {
   height: 70vh;
-  border: 1px solid #0084ff;
   border-top: none;
   border-radius: 0px 0px 12px 12px;
   background-color: #fff;

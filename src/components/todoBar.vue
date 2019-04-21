@@ -1,21 +1,20 @@
 <template>
   <header>
-
-    <div class="logo">&#x2713; TODO List</div>
-
+    <div class="logo">
+      &#x2713; TODO List
+    </div>
     <nav class="navigation">
-      <router-link to="/about" class="btn-about">ABOUT</router-link>
+      <router-link to="/about" class="btn-about">
+        ABOUT
+      </router-link>
     </nav>
-
   </header>
 </template>
 
 <script>
-// === EXPORT DEFAULT === //
 export default {
-  name: 'todoBar'
+  name: 'TodoBar'
 }
-// = END EXPORT DEFAULT = //
 </script>
 
 <style scoped>

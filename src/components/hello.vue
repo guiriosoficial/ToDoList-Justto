@@ -1,28 +1,36 @@
 <template>
-    <p>
-      <i class="fas fa-arrow-up" /><br>
-      You can insert your tasks here
-    </p>
+  <div class="hello">
+    <i class="fas fa-arrow-up" />
+    <p>You can insert your tasks here</p>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'hello',
-  };
+export default {
+  name: 'Hello'
+}
 </script>
 
 <style scoped>
 /* ====== TEXT BOX ====== */
-.fas {
-  font-size: 2.5em;
+
+.hello {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 3em;
+  color: #ccc;
+  font-family: cursive;
 }
 
 p {
-  margin: 20px 40px 0px 40px;
-  font-family: cursive;
-  font-size: 3em;
-  color: #ccc;
-  text-align: center;
+  margin-top: 40px;
+}
+
+.fas {
+  font-size: 2.5em;
 }
 /* ==== END TEXT BOX ==== */
 </style>
