@@ -1,12 +1,16 @@
 <template>
   <ul>
     <taskInput @send-task="addTask" />
-    <hello v-if="todoList == 0" />
+
+    <div v-if="tasks.length === 0" class="no-tasks">
+      <p>Nenhuma tarefa no momento</p>
+    </div>
+
     <div v-else class="overflow">
       <taskItem
-        v-for="(todo, index) in todoList"
+        v-for="(task, index) in tasks"
         :key="index"
-        :todo="todo"
+        :todo="task"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
       <button class="btn-rmv-all" title="Revome All Tasks" @click="removeAll">
@@ -18,55 +22,60 @@
 
 <script>
 import taskInput from './taskInput'
-import hello from './hello'
 import taskItem from './taskItem'
 
 export default {
   name: 'TaskList',
   components: {
     taskInput,
-    hello,
     taskItem
   },
   data () {
     return {
-      todoList: []
+      tasks: []
     }
   },
   mounted () {
-    if (localStorage.getItem('todoList')) {
+    if (localStorage.getItem('tasks')) {
       try {
-        this.todoList = JSON.parse(localStorage.getItem('todoList'))
+        this.tasks = JSON.parse(localStorage.getItem('tasks'))
       } catch (error) {
-        localStorage.removeItem('todoList')
+        localStorage.removeItem('tasks')
       }
     }
   },
   methods: {
     addTask (todo) {
-      this.todoList.push({ name: todo })
+      this.tasks.push({ name: todo })
       this.saveInCache(todo)
     },
     removeTask (todo) {
-      const index = this.todoList.indexOf(todo)
-      this.todoList.splice(index, 1)
+      const index = this.tasks.indexOf(todo)
+      this.tasks.splice(index, 1)
       this.saveInCache(todo)
     },
     removeAll (todo) {
       if (confirm('Are you sure you want to remove all tasks?')) {
-        this.todoList.splice(todo)
+        this.tasks.splice(todo)
         this.saveInCache(todo)
       }
     },
     saveInCache () {
-      const parsed = JSON.stringify(this.todoList)
-      localStorage.setItem('todoList', parsed)
+      const parsed = JSON.stringify(this.tasks)
+      localStorage.setItem('tasks', parsed)
     }
   }
 }
 </script>
 
 <style>
+.no-tasks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* ====== LIST BOX ====== */
 ul {
   width: 100%;

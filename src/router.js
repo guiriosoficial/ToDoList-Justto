@@ -1,20 +1,20 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-Vue.use(Router);
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      component: () => import(/* webpackChunkName: "taskList" */ '@/components/taskList'),
+      component: () => import(/* webpackChunkName: "taskList" */ '@/components/taskList')
     },
     {
       path: '/about',
-      component: () => import(/* webpackChunkName: "about" */ '@/components/about'),
+      component: () => import(/* webpackChunkName: "about" */ '@/components/about')
     },
     {
       path: '*',
-      redirect: '/',
-    },
-  ],
-});
+      redirect: '/'
+    }
+  ]
+})
