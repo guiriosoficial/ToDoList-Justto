@@ -1,20 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
-import taskList from '@/components/taskList.vue';
-import about from '@/components/about.vue';
-
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      component: taskList,
+      component: () => import(/* webpackChunkName: "taskList" */ '@/components/taskList'),
     },
     {
       path: '/about',
-      component: about,
+      component: () => import(/* webpackChunkName: "about" */ '@/components/about'),
     },
     {
       path: '*',
