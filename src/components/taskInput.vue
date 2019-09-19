@@ -1,21 +1,18 @@
 <template>
   <div class="input-box">
-    <li>
-      <div class="tasks">
-        <input
-          v-model="newTask"
-          class="input-task"
-          placeholder="Insert a New Task Here"
-          type="text"
-          autofocus
-          @keyup.enter="addTask">
-      </div>
-      <div class="options">
-        <button class="btn-icon plus-icon" title="Add Task" @click="addTask">
-          <i class="fas fa-plus" />
-        </button>
-      </div>
-    </li>
+    <div class="tasks">
+      <input
+        v-model="newTask"
+        class="input-task"
+        placeholder="Insira uma nova task aqui"
+        autofocus
+        @keyup.enter="addTask">
+    </div>
+    <div class="options">
+      <button class="btn-icon plus-icon" title="Adcionar Tarefa" @click="addTask">
+        <i class="fas fa-plus" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -42,9 +39,7 @@ export default {
 /* ===== INPUT BOX ===== */
 .input-box {
   background-color: #ddd;
-  border-radius: 0px 0px 12px 12px;
-  margin: 0px;
-  width: 100%;
+
 }
 
 .input-box:hover {

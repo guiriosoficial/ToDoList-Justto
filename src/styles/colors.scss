@@ -1,0 +1,13 @@
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+
+$--color-primary: #1c75db !default;
+$--color-primary-30: mix($--color-white, $--color-primary, 30%);
+$--color-primary-40: mix($--color-white, $--color-primary, 40%);
+$--color-primary-50: mix($--color-white, $--color-primary, 50%);
+$--color-primary-60: mix($--color-white, $--color-primary, 60%);
+
+
+$--color-text-primary: #343c4b !default;
+$--color-text-regular: #424242 !default;
+$--color-text-secondary: #adadad !default;

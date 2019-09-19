@@ -3,6 +3,7 @@
     <taskInput @send-task="addTask" />
 
     <div v-if="tasks.length === 0" class="no-tasks">
+      <i class="far fa-calendar-times" />
       <p>Nenhuma tarefa no momento</p>
     </div>
 
@@ -13,20 +14,20 @@
         :todo="task"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
-      <button class="btn-rmv-all" title="Revome All Tasks" @click="removeAll">
-        <i class="fas fa-trash-alt" />
-      </button>
+      <clean-tasks />
     </div>
   </ul>
 </template>
 
 <script>
+import CleanTasks from './CleanTasks'
 import taskInput from './taskInput'
 import taskItem from './taskItem'
 
 export default {
   name: 'TaskList',
   components: {
+    CleanTasks,
     taskInput,
     taskItem
   },
@@ -153,11 +154,11 @@ ul {
   transition: 0.1s ease-in-out;
 }
 
-.btn-rmv-all:focus {
+/*.btn-rmv-all:focus {
   box-shadow: none;
   border: none;
   outline: 0;
-}
+}*/
 
 .btn-rmv-all .fas {
   position: absolute;

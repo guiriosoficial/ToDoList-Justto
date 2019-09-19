@@ -10,7 +10,7 @@ export default new Router({
     },
     {
       path: '/about',
-      component: () => import(/* webpackChunkName: "about" */ '@/components/about')
+      component: () => import(/* webpackChunkName: "About" */ '@/views/About')
     },
     {
       path: '*',

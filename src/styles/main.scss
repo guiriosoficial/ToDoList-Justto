@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import '@/styles/colors.scss';
+
+* {
+  text-decoration: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  overflow: hidden;
+}
+
+html {
+  font-family: 'Muli', sans-serif;
+}
+
+p {
+  color: $--color-text-primary;
+  font-size: 22px;
+  word-wrap: break-word;
+}
+
+h1 {
+  font-size: 24px;
+  color: $--color-white;
+}
