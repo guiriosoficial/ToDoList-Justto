@@ -27,24 +27,22 @@ export default {
   align-items: center;
   flex-direction: column;
   overflow-y: auto;
-}
-
-p {
-  margin: 0 100px;
-  text-align: center;
-  &:last-of-type {
+  p {
+    margin: 0 100px;
+    text-align: center;
+    &:last-of-type {
       margin-top: 8px;
+    }
   }
-}
-
-.link {
-  margin-top: 22px;
-  font-size: 18px;
-  color: $--color-primary;
-  .fas {
-    margin-right: 6px;
-    display: inline;
+  .link {
+    margin-top: 22px;
     font-size: 18px;
+    color: $--color-primary;
+    .fas {
+      margin-right: 6px;
+      display: inline;
+      font-size: 18px;
+    }
   }
 }
 

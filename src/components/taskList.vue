@@ -1,76 +1,72 @@
 <template>
-  <ul>
-    <taskInput @send-task="addTask" />
+  <div>
+    <task-input @add-task="addTask" />
 
-    <div v-if="tasks.length === 0" class="no-tasks">
-      <i class="far fa-calendar-times" />
-      <p>Nenhuma tarefa no momento</p>
+    <div v-if="list.length === 0" class="empty">
+      <p><i class="far fa-calendar-times" />Nenhuma tarefa no momento</p>
     </div>
 
-    <div v-else class="overflow">
+    <ul v-else class="overflow">
       <taskItem
-        v-for="(task, index) in tasks"
+        v-for="(task, index) in list"
         :key="index"
         :todo="task"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
-      <clean-tasks />
-    </div>
-  </ul>
+    </ul>
+    <clean-tasks @remove-all="removeAll"/>
+  </div>
 </template>
 
 <script>
 import CleanTasks from './CleanTasks'
-import taskInput from './taskInput'
+import TaskInput from './TaskInput'
 import taskItem from './taskItem'
 
 export default {
   name: 'TaskList',
   components: {
     CleanTasks,
-    taskInput,
+    TaskInput,
     taskItem
   },
   data () {
     return {
-      tasks: []
+      list: []
     }
   },
-  mounted () {
-    if (localStorage.getItem('tasks')) {
-      try {
-        this.tasks = JSON.parse(localStorage.getItem('tasks'))
-      } catch (error) {
-        localStorage.removeItem('tasks')
-      }
+  beforeMount () {
+    if (localStorage.getItem('justtodo')) {
+      try {this.tasks = JSON.parse(localStorage.getItem('justtodo'))}
+      catch {localStorage.removeItem('justtodo')}
     }
   },
   methods: {
-    addTask (todo) {
-      this.tasks.push({ name: todo })
-      this.saveInCache(todo)
+    addTask (task) {
+      this.list.push(task)
+      this.saveInCache()
     },
     removeTask (todo) {
       const index = this.tasks.indexOf(todo)
-      this.tasks.splice(index, 1)
+      this.list.splice(index, 1)
       this.saveInCache(todo)
     },
-    removeAll (todo) {
-      if (confirm('Are you sure you want to remove all tasks?')) {
-        this.tasks.splice(todo)
-        this.saveInCache(todo)
+    removeAll () {
+      if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) {
+        this.list = []
+        this.saveInCache(this.list)
       }
     },
     saveInCache () {
-      const parsed = JSON.stringify(this.tasks)
-      localStorage.setItem('tasks', parsed)
+      const parsed = JSON.stringify(this.list)
+      localStorage.setItem('justtodo', parsed)
     }
   }
 }
 </script>
 
 <style>
-.no-tasks {
+.empty {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +98,8 @@ ul {
 .options {
   float: right;
   display: flex;
-  padding: 12px 6px;
+  align-items: center;
+  padding: 0 6px;
 }
 /* ==== END OPTIONS BOX ==== */
 

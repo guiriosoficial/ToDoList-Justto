@@ -2,7 +2,7 @@
   <div class="list-item">
     <li v-show="!edit">
       <div class="tasks">
-        {{ todo.name }}
+        {{ todo }}
       </div>
       <div class="options">
         <div>

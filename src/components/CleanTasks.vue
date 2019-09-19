@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: 'CleanTasks'
+  name: 'CleanTasks',
+  
+  methods: {
+    removeAll () {
+      this.$emit('remove-all')
+    }
+  }
 }
 </script>
 

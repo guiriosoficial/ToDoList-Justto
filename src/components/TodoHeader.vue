@@ -48,16 +48,15 @@ export default {
   padding: 0 20px;
   font-weight: bold;
   background-color: $--color-primary;
-}
-
-.nav {
-  background-color: $--color-primary-30;
-  border-radius: 2px;
-  padding: 6px 14px;
-  cursor: pointer;
-  color: white;
-  &:hover {
-    background-color: $--color-primary-40;
+  .nav {
+    background-color: $--color-primary-30;
+    border-radius: 2px;
+    padding: 6px 14px;
+    cursor: pointer;
+    color: white;
+    &:hover {
+      background-color: $--color-primary-40;
+    }
   }
 }
 </style>
