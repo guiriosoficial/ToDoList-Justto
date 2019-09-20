@@ -12,26 +12,16 @@
 <script>
 export default {
   name: 'TodoHeader',
-  data () {
-    return {
-      title: 'SOBRE',
-      link: '/about'
+  props :{
+    title: {
+      type: String,
+      default: 'SOBRE',
+      required: true
     }
   },
   computed: {
-    currentRoute () {
-      return this.$route.path
-    }
-  },
-  watch: {
-    currentRoute: function () {
-      if (this.currentRoute === '/') {
-        this.title = 'SOBRE'
-        this.link = '/about'
-      } else {
-        this.title = 'VOLTAR'
-        this.link = '/'
-      }
+    link () {
+      return this.title == 'SOBRE' ? '/about' :  '/'
     }
   }
 }

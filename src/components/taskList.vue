@@ -1,9 +1,10 @@
 <template>
   <div>
+    <todo-header link="SOBRE" />
     <task-input @add-task="addTask" />
-
     <div v-if="list.length === 0" class="empty">
-      <p><i class="far fa-calendar-times" />Nenhuma tarefa no momento</p>
+      <i class="far fa-calendar-times" />
+      <p>Nenhuma tarefa por aqui!</p>
     </div>
 
     <ul v-else class="overflow">
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import TodoHeader from './TodoHeader'
 import CleanTasks from './CleanTasks'
 import TaskInput from './TaskInput'
 import taskItem from './taskItem'
@@ -26,6 +28,7 @@ import taskItem from './taskItem'
 export default {
   name: 'TaskList',
   components: {
+    TodoHeader,
     CleanTasks,
     TaskInput,
     taskItem
@@ -65,12 +68,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .empty {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: calc(100vh - 130px);
+  p { margin-top: 20px }
+  i { font-size: 60px; }
 }
 
 /* ====== LIST BOX ====== */
@@ -127,35 +133,6 @@ ul {
 /* == END OPTIONS BUTTON == */
 
 /* === REMOVE ALL BUTTON === */
-.btn-rmv-all {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -36%);
-  top: 100%;
-  transition: 0.1s ease-in-out;
-  border-radius: 50%;
-  padding: 8px;
-  background-color: #666;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  color: #eee;
-  font-size: 26px;
-  width: 60px;
-  height: 60px;
-}
-
-.btn-rmv-all:hover {
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  transition: 0.1s ease-in-out;
-}
-
-/*.btn-rmv-all:focus {
-  box-shadow: none;
-  border: none;
-  outline: 0;
-}*/
 
 .btn-rmv-all .fas {
   position: absolute;
