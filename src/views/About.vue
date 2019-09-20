@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <todo-header title="VOLTAR" />
     <div class="about-container">
       <p>Sou Guilherme Rios, 21 anos, e este foi meu desafio para estágio na Justto, minha primeira aplicação em Vue.js</p>
@@ -25,11 +25,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/colors.scss';
 
 .about-container {
-  margin-top: -70px;
+  height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +49,6 @@ export default {
     .fas {
       margin-right: 6px;
       display: inline;
-      font-size: 18px;
     }
   }
 }

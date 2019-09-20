@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 /* === INPUT EDIT ITEM === */
-.task-input-edit {
+/*.task-input-edit {
   padding: 0px;
   font-size: 22px;
   color: #666;
@@ -86,9 +86,7 @@ export default {
   border: none;
   outline: 0;
 }
-/* = END INPUT EDIT ITEM = */
 
-/* ==== TASK LIST STYLE ==== */
 .list-item {
   background-color: #ddd;
   font-family: Arial, Helvetica, sans-serif;
@@ -106,6 +104,6 @@ export default {
 .list-item:hover {
   background: #ccc;
   transition: 0.2s ease-in-out;
-}
+}*/
 /* == END TASK LIST STYLE == */
 </style>

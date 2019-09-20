@@ -1,18 +1,13 @@
 <template>
-  <div class="taskName-container">
-    <div class="input">
-      <input
-        v-model="taskName"
-        class="input-task"
-        placeholder="Insira uma nova task aqui"
-        autofocus
-        @keyup.enter="addTask">
-    </div>
-    <div class="add-btn">
-      <button class="btn-icon" title="Adcionar Tarefa" @click="addTask">
-        <i class="fas fa-plus" />
-      </button>
-    </div>
+  <div class="taskinput-container">
+    <input
+      v-model="taskName"
+      placeholder="Insira uma nova task aqui"
+      autofocus
+      @keyup.enter="addTask">
+    <button class="btn-icon" title="Adcionar Tarefa" @click="addTask">
+      <i class="fas fa-plus" />
+    </button>
   </div>
 </template>
 
@@ -38,21 +33,19 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/colors.scss';
 
-.taskName-container {
-  background-color: #ddd;
+.taskinput-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  width: 100%;
   padding: 0 20px;
+  background-color: #ddd;
   &:hover {
     background: #ccc;
   }
-}
-.input {
-  width: calc(100% - 140px);
-  input {
-    width: 100%;
+  input, button {
+    font-size: 20px;
   }
 }
 </style>

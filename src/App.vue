@@ -5,13 +5,8 @@
 </template>
 
 <script>
-import TodoHeader from '@/components/TodoHeader'
-
 export default {
-  name: 'App',
-  components: {
-    TodoHeader
-  }
+  name: 'App'
 }
 </script>
 

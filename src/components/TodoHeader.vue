@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'TodoHeader',
-  props :{
+  props: {
     title: {
       type: String,
       default: 'SOBRE',
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     link () {
-      return this.title == 'SOBRE' ? '/about' :  '/'
+      return this.title === 'SOBRE' ? '/about' : '/'
     }
   }
 }
@@ -35,15 +35,16 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  width: 100%;
   padding: 0 20px;
   font-weight: bold;
   background-color: $--color-primary;
   .nav {
     background-color: $--color-primary-30;
     border-radius: 2px;
-    padding: 6px 14px;
+    padding: 8px 14px;
+    color: $--color-white;
     cursor: pointer;
-    color: white;
     &:hover {
       background-color: $--color-primary-40;
     }
