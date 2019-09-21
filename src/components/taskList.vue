@@ -17,7 +17,7 @@
         @edit-task="saveInCache" />
     </ul>
 
-    <clean-tasks @remove-all="removeAll" />
+    <clean-tasks :number="list.length" @remove-all="removeAll" />
   </div>
 </template>
 
@@ -74,14 +74,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/colors.scss';
+
 .empty {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: calc(100vh - 130px);
-  p { margin-top: 20px }
-  i { font-size: 60px; }
+  color: $--color-text-primary;
+  p { margin-top: 18px }
+  i { font-size: 48px; }
 }
 
 /* ====== LIST BOX ====== */

@@ -39,14 +39,19 @@ export default {
   padding: 0 20px;
   font-weight: bold;
   background-color: $--color-primary;
+  .logo h1 {
+    font-size: 24px;
+    color: $--color-white;
+  }
   .nav {
-    background-color: $--color-primary-30;
+    font-size: 16px;
+    color: $--color-white;
+    background-color: $--color-primary-dark;
     border-radius: 2px;
     padding: 8px 14px;
-    color: $--color-white;
-    cursor: pointer;
+    transition: .5s ease;
     &:hover {
-      background-color: $--color-primary-40;
+      background-color: $--color-primary-light;
     }
   }
 }

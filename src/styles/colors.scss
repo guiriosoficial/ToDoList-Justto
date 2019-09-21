@@ -1,13 +1,13 @@
-$--color-white: #fff !default;
-$--color-black: #000 !default;
+$--color-white: #fafafa !default;
+$--color-black: #000000 !default;
+$--color-grey-light: #e5eaef !default;
+$--color-grey-dark: #dee2e6 !default;
+$--color-grey-hover: #d5d9de !default;
 
 $--color-primary: #1c75db !default;
-$--color-primary-30: mix($--color-white, $--color-primary, 30%);
-$--color-primary-40: mix($--color-white, $--color-primary, 40%);
-$--color-primary-50: mix($--color-white, $--color-primary, 50%);
-$--color-primary-60: mix($--color-white, $--color-primary, 60%);
+$--color-primary-light: #2993de !default;
+$--color-primary-dark: #0c609c !default;
 
-
-$--color-text-primary: #343c4b !default;
-$--color-text-regular: #424242 !default;
-$--color-text-secondary: #adadad !default;
+$--color-text-primary: #48484a !default;
+$--color-text-secondary: #68686b !default;
+$--color-text-hover: #808080 !default;

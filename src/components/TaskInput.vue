@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/colors.scss';
 
 .taskinput-container {
@@ -40,12 +40,17 @@ export default {
   height: 60px;
   width: 100%;
   padding: 0 20px;
-  background-color: #ddd;
+  background-color: $--color-grey-dark;
   &:hover {
-    background: #ccc;
+    background-color: $--color-grey-hover;
   }
   input, button {
+    height: 60px;
+    padding: 20px 0px;
     font-size: 20px;
+  }
+  ::-webkit-input-placeholder {
+    color: $--color-text-secondary;
   }
 }
 </style>

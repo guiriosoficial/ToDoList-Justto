@@ -37,7 +37,10 @@ export default {
   overflow-y: auto;
   p {
     margin: 0 100px;
+    font-size: 22px;
     text-align: center;
+    color: $--color-text-primary;
+    word-wrap: break-word;
     &:last-of-type {
       margin-top: 8px;
     }

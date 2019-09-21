@@ -15,25 +15,20 @@ html {
   font-family: 'Muli', sans-serif;
 }
 
-p {
-  color: $--color-text-primary;
-  font-size: 22px;
-  word-wrap: break-word;
-}
-
-h1 {
-  font-size: 24px;
-  color: $--color-white;
-}
-
 input {
+  color: $--color-text-primary;
   background: none;
   font-size: 18px;
   width: 100%
 }
 
 button {
-  cursor: pointer;
-  font-size: 20px;
+  color: $--color-text-secondary;
+  background: none;
   margin-left: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  &:hover {
+    color: $--color-text-primary;
+  }
 }

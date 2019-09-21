@@ -1,5 +1,5 @@
 <template>
-  <button class="rmv-all" title="Limpar lista de tarefas" @click="removeAll">
+  <button v-show="number > 0" class="rmv-all" title="Limpar lista de tarefas" @click="removeAll">
     <i class="fas fa-trash-alt" />
   </button>
 </template>
@@ -7,7 +7,13 @@
 <script>
 export default {
   name: 'CleanTasks',
-  
+  props: {
+    number: {
+      type: Number,
+      default: 0,
+      required: true,
+    }
+  },
   methods: {
     removeAll () {
       this.$emit('remove-all')
@@ -22,23 +28,25 @@ export default {
 .rmv-all {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, -36%);
   top: 100%;
   transition: 0.1s ease-in-out;
+  transform: translate(-50%, -38%);
+  background-color: $--color-text-primary;
   border-radius: 50%;
   padding: 8px;
-  background-color: #666;
+  margin: 0;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   color: $--color-white;
-  font-size: 26px;
-  width: 60px;
-  height: 60px;
+  font-size: 24px;
+  transition: 0.1s ease-in-out;
   &:hover {
     transform: translate(-50%, -50%);
+    color: $--color-white;
     cursor: pointer;
-    transition: 0.1s ease-in-out;
   }
   .fas {
     position: absolute;
