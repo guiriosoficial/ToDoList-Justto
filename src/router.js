@@ -6,7 +6,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: () => import(/* webpackChunkName: "taskList" */ '@/components/taskList')
+      component: () => import(/* webpackChunkName: "Todo" */ '@/views/Todo')
     },
     {
       path: '/about',
