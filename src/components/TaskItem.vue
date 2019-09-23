@@ -2,7 +2,7 @@
   <li class="itemlist-container">
     <div v-if="!editing" class="listitem">
       <span>{{ task }}</span>
-      <div>
+      <div style="display: flex; min-width: 65px;">
         <button @click="editTask">
           <i class="far fa-edit" />
         </button>
@@ -69,12 +69,17 @@ export default {
     justify-content: space-between;
     border-radius: 2px;
     width: 100%;
+    max-width: 100%;
     height: 50px;
     padding: 0 20px;
     margin-bottom: 12px;
     background-color: $--color-grey-light;
     color: $--color-text-primary;
     font-size: 18px;
+    span {
+      text-overflow: ellipsis;
+    }
+
     &:hover {
       background-color: $--color-grey-hover;
     }

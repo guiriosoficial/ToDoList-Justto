@@ -56,4 +56,9 @@ export default {
   }
 }
 
+@media (max-width: 680px) {
+  .about-container p {
+    margin: 0 30px;
+  }
+}
 </style>
