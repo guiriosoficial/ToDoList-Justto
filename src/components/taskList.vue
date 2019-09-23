@@ -1,18 +1,18 @@
 <template>
   <div>
     <todo-header link="SOBRE" />
-
     <task-input @add-task="addTask" />
+
     <div v-if="list.length === 0" class="empty">
       <i class="far fa-calendar-times" />
       <p>Nenhuma tarefa por aqui!</p>
     </div>
 
     <ul v-else class="overflow">
-      <taskItem
+      <task-item
         v-for="(task, index) in list"
         :key="index"
-        :todo="task"
+        :task="task"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
     </ul>
@@ -25,7 +25,7 @@
 import TodoHeader from './TodoHeader'
 import CleanTasks from './CleanTasks'
 import TaskInput from './TaskInput'
-import taskItem from './taskItem'
+import TaskItem from './TaskItem'
 
 export default {
   name: 'TaskList',
@@ -33,7 +33,7 @@ export default {
     TodoHeader,
     CleanTasks,
     TaskInput,
-    taskItem
+    TaskItem
   },
   data () {
     return {
@@ -43,7 +43,7 @@ export default {
   beforeMount () {
     if (localStorage.getItem('justtodo')) {
       try {
-        this.tasks = JSON.parse(localStorage.getItem('justtodo'))
+        this.list = JSON.parse(localStorage.getItem('justtodo'))
       } catch {
         localStorage.removeItem('justtodo')
       }
@@ -54,10 +54,10 @@ export default {
       this.list.push(task)
       this.saveInCache()
     },
-    removeTask (todo) {
-      const index = this.tasks.indexOf(todo)
+    removeTask (task) {
+      let index = this.list.indexOf(task)
       this.list.splice(index, 1)
-      this.saveInCache(todo)
+      this.saveInCache()
     },
     removeAll () {
       if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) {
@@ -83,61 +83,12 @@ export default {
   flex-direction: column;
   height: calc(100vh - 130px);
   color: $--color-text-primary;
-  p { margin-top: 18px }
+  p { font-size: 20px; margin-top: 16px; }
   i { font-size: 48px; }
 }
 
-/* ====== LIST BOX ====== */
-// ul {
-//   width: 100%;
-//   height: 100%;
-// }
-//
-// .overflow {
-//   height: calc(100% - 54px);
-//   overflow-y: auto;
-// }
-// /* ==== END LIST BOX ====*/
-//
-// /* ====== TASKS BOX ====== */
-// .tasks {
-//   float: left;
-//   display: flex;
-//   padding: 12px 20px;
-//   width: calc(100% - 140px);
-// }
-// /* ==== END TASKS BOX ==== */
-//
-// /* ====== OPTIONS BOX ====== */
-// .options {
-//   float: right;
-//   display: flex;
-//   align-items: center;
-//   padding: 0 6px;
-// }
-// /* ==== END OPTIONS BOX ==== */
-//
-// /* ==== OPTIONS BUTTON ==== */
-// .btn-icon {
-//   background: none;
-//   padding: 0px 20px 0px 0px;
-//   color: #888;
-//   font-size: 20px;
-//   float: right;
-//   transition: 0.2s ease-in-out;
-// }
-//
-// .btn-icon:hover {
-//   color: #666;
-//   cursor: pointer;
-//   transition: 0.2s ease-in-out;
-// }
-//
-// .btn-icon:focus {
-//   box-shadow: none;
-//   border: none;
-//   outline: 0;
-// }
-// /* == END OPTIONS BUTTON == */
-
+.overflow {
+  height: calc(100vh - 142px);
+  overflow-y: auto;
+}
 </style>

@@ -39,7 +39,7 @@ export default {
   justify-content: space-between;
   height: 60px;
   width: 100%;
-  padding: 0 20px;
+  padding: 0px 20px;
   background-color: $--color-grey-dark;
   &:hover {
     background-color: $--color-grey-hover;

@@ -1,5 +1,9 @@
 <template>
-  <button v-show="number > 0" class="rmv-all" title="Limpar lista de tarefas" @click="removeAll">
+  <button
+    v-show="number > 0"
+    class="rmv-all"
+    title="Limpar lista de tarefas"
+    @click="removeAll">
     <i class="fas fa-trash-alt" />
   </button>
 </template>
@@ -11,7 +15,7 @@ export default {
     number: {
       type: Number,
       default: 0,
-      required: true,
+      required: true
     }
   },
   methods: {
