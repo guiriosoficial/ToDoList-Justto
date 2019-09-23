@@ -86,9 +86,23 @@ export default {
   p { font-size: 20px; margin-top: 16px; }
   i { font-size: 48px; }
 }
-
 .overflow {
-  height: calc(100vh - 142px);
+  height: calc(100vh - 130px);
   overflow-y: auto;
+  padding: 12px 12px 0;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: $--color-grey-light;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $--color-primary-light;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: $--color-primary;
+}
+
 </style>

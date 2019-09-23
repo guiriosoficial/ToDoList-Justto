@@ -71,10 +71,9 @@ export default {
     width: 100%;
     height: 50px;
     padding: 0 20px;
-    margin: 12px 12px 0;
+    margin-bottom: 12px;
     background-color: $--color-grey-light;
     color: $--color-text-primary;
-    font-size: 18px;
     &:hover {
       background-color: $--color-grey-hover;
     }
@@ -83,7 +82,6 @@ export default {
       padding: 16px 0px;
       font-size: 18px;
     }
-
   }
   &:nth-child(even) .listitem {
     background-color: $--color-grey-dark;
