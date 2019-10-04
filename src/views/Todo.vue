@@ -13,8 +13,9 @@
         v-for="(task, index) in list"
         :key="index"
         :task="task"
+        @edit-task="editTask"
         @remove-task="removeTask"
-        @edit-task="saveInCache" />
+        @save-edition="saveInCache" />
     </ul>
 
     <clean-tasks :number="list.length" @remove-all="removeAll" />
@@ -58,6 +59,11 @@ export default {
       let index = this.list.indexOf(task)
       this.list.splice(index, 1)
       this.saveInCache()
+    },
+    editTask (task) {
+      let index = this.list.indexOf(task)
+      this.list.forEach(item => item.editing = false)
+      this.list[index].editing = true
     },
     removeAll () {
       if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) this.saveInCache(this.list = [])

@@ -1,9 +1,9 @@
 <template>
   <li class="itemlist-container">
-    <div v-if="!editing" class="listitem">
+    <div v-if="!task.editing" class="listitem">
       <span>{{ task.name }}</span>
       <div style="display: flex; min-width: 65px;">
-        <button @click="editTask">
+        <button @click="editTask(task)">
           <i class="far fa-edit" />
         </button>
         <button @click="removeTask(task)">
@@ -11,7 +11,7 @@
         </button>
       </div>
     </div>
-    <div v-if="editing" class="listitem">
+    <div v-if="task.editing" class="listitem">
       <input
         ref="task"
         v-model="task.name"
@@ -31,11 +31,11 @@ export default {
     task: {
       type: Object,
       required: true,
-      default: {
+      default: () => ({
         name: 'Ops! Isto não é uma tarefa.',
         done: false,
         editing: false
-      }
+      })
     }
   },
   data () {
@@ -47,16 +47,14 @@ export default {
     removeTask (task) {
       this.$emit('remove-task', task)
     },
-    editTask () {
-      this.$nextTick(() => {
-        this.editing = true
-        this.$nextTick(() => this.$refs.task.focus())
-      })
+    editTask (task) {
+      this.$emit('edit-task', task)
+      this.$nextTick(() => this.$refs.task.focus())
     },
     confirm (task) {
       if (task !== '') {
-        this.editing = false
-        this.$emit('edit-task', task.name)
+        this.task.editing = false
+        this.$emit('save-edition', task.name)
       }
     }
   }
