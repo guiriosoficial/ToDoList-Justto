@@ -32,6 +32,9 @@ export default {
       type: String,
       required: true,
       default: 'Ops! Isto não é uma tarefa.'
+    },
+    oneByOne: {
+      type: Boolean,
     }
   },
   data () {
@@ -39,13 +42,19 @@ export default {
       editing: false
     }
   },
+  watch: {
+    oneByOne: function () {this.editing = false}
+  },
   methods: {
     removeTask (task) {
       this.$emit('remove-task', task)
     },
     editTask () {
-      this.editing = true
-      this.$nextTick(() => this.$refs.task.focus())
+      this.$emit('cancel-edit')
+      this.$nextTick(() => {
+        this.editing = true
+        this.$nextTick(() => this.$refs.task.focus())
+      })
     },
     confirm (task) {
       if (task !== '') {

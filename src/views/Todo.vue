@@ -1,6 +1,6 @@
 <template>
   <div>
-    <todo-header link="SOBRE" />
+    <todo-header title="SOBRE" />
     <task-input @add-task="addTask" />
 
     <div v-if="list.length === 0" class="empty">
@@ -13,6 +13,8 @@
         v-for="(task, index) in list"
         :key="index"
         :task="task"
+        :oneByOne="oneByOne"
+        @cancel-edit="cancelEdit"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
     </ul>
@@ -37,7 +39,8 @@ export default {
   },
   data () {
     return {
-      list: []
+      list: [],
+      oneByOne: false
     }
   },
   beforeMount () {
@@ -50,6 +53,9 @@ export default {
     }
   },
   methods: {
+    cancelEdit () {
+      this.oneByOne = !this.oneByOne
+    },
     addTask (task) {
       this.list.push(task)
       this.saveInCache()
