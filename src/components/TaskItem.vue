@@ -1,7 +1,7 @@
 <template>
   <li class="itemlist-container">
     <div v-if="!editing" class="listitem">
-      <span>{{ task }}</span>
+      <span>{{ task.name }}</span>
       <div style="display: flex; min-width: 65px;">
         <button @click="editTask">
           <i class="far fa-edit" />
@@ -14,7 +14,7 @@
     <div v-if="editing" class="listitem">
       <input
         ref="task"
-        v-model="task"
+        v-model="task.name"
         type="text"
         @keyup.enter="confirm">
       <button @click="confirm">
@@ -29,12 +29,13 @@ export default {
   name: 'TaskItem',
   props: {
     task: {
-      type: String,
+      type: Object,
       required: true,
-      default: 'Ops! Isto não é uma tarefa.'
-    },
-    oneByOne: {
-      type: Boolean,
+      default: {
+        name: 'Ops! Isto não é uma tarefa.',
+        done: false,
+        editing: false
+      }
     }
   },
   data () {
@@ -42,15 +43,11 @@ export default {
       editing: false
     }
   },
-  watch: {
-    oneByOne: function () {this.editing = false}
-  },
   methods: {
     removeTask (task) {
       this.$emit('remove-task', task)
     },
     editTask () {
-      this.$emit('cancel-edit')
       this.$nextTick(() => {
         this.editing = true
         this.$nextTick(() => this.$refs.task.focus())
@@ -59,7 +56,7 @@ export default {
     confirm (task) {
       if (task !== '') {
         this.editing = false
-        this.$emit('edit-task', task)
+        this.$emit('edit-task', task.name)
       }
     }
   }

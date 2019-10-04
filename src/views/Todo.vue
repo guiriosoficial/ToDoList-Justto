@@ -13,8 +13,6 @@
         v-for="(task, index) in list"
         :key="index"
         :task="task"
-        :oneByOne="oneByOne"
-        @cancel-edit="cancelEdit"
         @remove-task="removeTask"
         @edit-task="saveInCache" />
     </ul>
@@ -39,8 +37,7 @@ export default {
   },
   data () {
     return {
-      list: [],
-      oneByOne: false
+      list: []
     }
   },
   beforeMount () {
@@ -53,11 +50,8 @@ export default {
     }
   },
   methods: {
-    cancelEdit () {
-      this.oneByOne = !this.oneByOne
-    },
     addTask (task) {
-      this.list.push(task)
+      this.list.push({ name: task, done: false, editing: false })
       this.saveInCache()
     },
     removeTask (task) {
@@ -66,10 +60,7 @@ export default {
       this.saveInCache()
     },
     removeAll () {
-      if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) {
-        this.list = []
-        this.saveInCache(this.list)
-      }
+      if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) this.saveInCache(this.list = [])
     },
     saveInCache () {
       const parsed = JSON.stringify(this.list)
