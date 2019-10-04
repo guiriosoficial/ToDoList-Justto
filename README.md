@@ -6,4 +6,10 @@ O desafio consiste em criar uma a **TODO List** seguindo os seguintes requisitos
 - Ser desenvolvida em Vue.js com Webpack e ser uma SPA,
 - Criar uma página "Sobre" utilizando o vue-router (Bônus)  
 
-> **Nota:** Sim, eu consegui a vaga :D.
+**Nota:** Sim, eu consegui a vaga :D.
+
+## Executando o Projeto
+- **Requisitos básicos:** Node e NPM  
+- **Instalar Dependencias:** `npm install`  
+- **Iniciar Servidor:** `npm run serve`  
+- **Buildar o Projeto:** `npm run build`  
