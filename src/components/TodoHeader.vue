@@ -2,6 +2,11 @@
   <header class="header">
     <div class="logo">
       <h1>TODO List</h1>
+      <div class="details">
+        <span>Total: {{ counter.total }} &nbsp;</span>
+        <span>Feitas: {{ counter.done }} &nbsp;</span>
+        <span>Restantes: {{ counter.doing }} &nbsp;</span>
+      </div>
     </div>
     <router-link :to="link" class="nav">
       {{ title }}
@@ -17,6 +22,15 @@ export default {
       type: String,
       default: 'SOBRE',
       required: true
+    },
+    counter: {
+      type: Object,
+      required: true,
+      default: () => ({
+        doing: 0,
+        done: 0,
+        total: 0
+      })
     }
   },
   computed: {
@@ -41,6 +55,10 @@ export default {
   background-color: $--color-primary;
   .logo h1 {
     font-size: 24px;
+    color: $--color-white;
+  }
+  .details {
+    font-size: 14px;
     color: $--color-white;
   }
   .nav {

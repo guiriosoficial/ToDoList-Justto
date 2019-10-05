@@ -1,6 +1,6 @@
 <template>
   <div>
-    <todo-header title="SOBRE" />
+    <todo-header :counter="doingDone" title="SOBRE" />
     <task-input @add-task="addTask" />
 
     <div v-if="list.length === 0" class="empty">
@@ -41,6 +41,15 @@ export default {
       list: []
     }
   },
+  computed: {
+    doingDone () {
+      return {
+        doing: this.list.filter(item => !item.done).length,
+        done: this.list.filter(item => item.done).length,
+        total: this.list.length
+      }
+    }
+  },
   beforeMount () {
     if (localStorage.getItem('justtodo')) {
       try {
@@ -62,11 +71,11 @@ export default {
     },
     editTask (task) {
       let index = this.list.indexOf(task)
-      this.list.forEach(item => item.editing = false)
+      this.list.forEach(item => (item.editing = false))
       this.list[index].editing = true
     },
     removeAll () {
-      if (confirm('Tem certeza que deseja remover todas as tarefas da lista?\nEsta Ação não pode ser desfeita.')) this.saveInCache(this.list = [])
+      if (confirm('Tem certeza que deseja remover todas as ' + this.list.length + ' tarefas da lista?\nEsta Ação não pode ser desfeita.')) this.saveInCache(this.list = [])
     },
     saveInCache () {
       const parsed = JSON.stringify(this.list)
