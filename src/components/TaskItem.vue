@@ -1,7 +1,13 @@
 <template>
   <li class="itemlist-container">
     <div v-if="!task.editing" class="listitem">
-      <span>{{ task.name }}</span>
+      <div class="item-title">
+        <label class="checkbox">
+          <input title="Marcar como FEITO" type="checkbox" v-model="task.done">
+          <span class="checkmark"></span>
+        </label>
+        <span>{{ task.name }}</span>
+      </div>
       <div style="display: flex; min-width: 65px;">
         <button @click="editTask(task)">
           <i class="far fa-edit" />
@@ -12,11 +18,14 @@
       </div>
     </div>
     <div v-if="task.editing" class="listitem">
-      <input
+      <div class="item-title">
+        <input type="checkbox" v-model="task.done">
+        <input
         ref="task"
         v-model="task.name"
         type="text"
         @keyup.enter="confirm">
+      </div>
       <button @click="confirm">
         <i class="fas fa-check" />
       </button>
@@ -80,17 +89,65 @@ export default {
     background-color: $--color-grey-light;
     color: $--color-text-primary;
     font-size: 18px;
-    span {
-      text-overflow: ellipsis;
+    .item-title {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      align-items: center;
+      span {
+        text-overflow: ellipsis;
+      }
+      input, button {
+        height: 50px;
+        padding: 16px 0px;
+        font-size: 18px;
+      }
+      .checkbox {
+        display: block;
+        position: relative;
+        user-select: none;
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
+        cursor: pointer;
+        input[type="checkbox"] {
+          position: absolute;
+          opacity: 0;
+          height: 0;
+          width: 0;
+          cursor: pointer;
+        }
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 20px;
+          width: 20px;
+          border-radius: 2px;
+          background-color: $--color-text-secondary;
+          &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 9px;
+            border: solid $--color-white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+          }
+        }
+        input:checked ~ .checkmark {
+          background-color: $--color-primary;
+          &:after {
+            display: block;
+          }
+        }
+      }
     }
-
     &:hover {
       background-color: $--color-grey-hover;
-    }
-    input, button {
-      height: 50px;
-      padding: 16px 0px;
-      font-size: 18px;
     }
   }
   &:nth-child(even) .listitem {
