@@ -1,12 +1,12 @@
 <template>
   <li class="itemlist-container">
-    <div v-if="!task.editing" class="listitem">
+    <div v-if="!task.editing" :class="classDone" class="listitem">
       <div class="item-title">
         <label class="checkbox">
-          <input title="Marcar como FEITO" type="checkbox" v-model="task.done">
-          <span class="checkmark"></span>
+          <input v-model="task.done" title="Marcar como FEITO" type="checkbox">
+          <span class="checkmark" />
         </label>
-        <span>{{ task.name }}</span>
+        <span :class="classDone">{{ task.name }}</span>
       </div>
       <div style="display: flex; min-width: 65px;">
         <button @click="editTask(task)">
@@ -19,12 +19,15 @@
     </div>
     <div v-if="task.editing" class="listitem">
       <div class="item-title">
-        <input type="checkbox" v-model="task.done">
+        <label class="checkbox">
+          <input v-model="task.done" title="Marcar como FEITO" type="checkbox">
+          <span class="checkmark" />
+        </label>
         <input
-        ref="task"
-        v-model="task.name"
-        type="text"
-        @keyup.enter="confirm">
+          ref="task"
+          v-model="task.name"
+          type="text"
+          @keyup.enter="confirm">
       </div>
       <button @click="confirm">
         <i class="fas fa-check" />
@@ -52,6 +55,11 @@ export default {
       editing: false
     }
   },
+  computed: {
+    classDone () {
+      return this.task.done ? 'task-done' : ''
+    }
+  },
   methods: {
     removeTask (task) {
       this.$emit('remove-task', task)
@@ -73,7 +81,10 @@ export default {
 
 <style lang="scss">
 @import '@/styles/colors.scss';
-
+.task-done {
+  text-decoration: line-through;
+  background-color: $--color-grey-hover !important;
+}
 .itemlist-container {
   display: flex;
   .listitem {
