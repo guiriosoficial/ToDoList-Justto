@@ -1,6 +1,22 @@
 {
   "name": "todolist-justto",
-  "version": "0.1.0",
+  "author": "Guilherme Rios da Cunha <guilherme.rc.98@gmail.com> (https://riwersxd.github.io)",
+  "bugs": "https://github.com/riwersxd/ToDoList-Justto/issues",
+  "homepage": "https://github.com/riwersxd/ToDoList-Justto",
+  "version": "2.0.0",
+  "license": "UNLICENSED",
+  "keywords": [
+    "challenge",
+    "justto-test",
+    "todolist",
+    "vuejs2",
+    "vue-router",
+    "vue-components",
+    "spa"
+  ],
+  "description": "Desafio TODO List para vaga de estágio na Justto - CONCLUIDO",
+  "repository": "github:riwersxd/ToDoList-Justto",
+  "main": "src/main.js",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -24,6 +40,15 @@
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "eslintConfig": {
     "root": true,
     "env": {
@@ -60,10 +85,5 @@
     "plugins": {
       "autoprefixer": {}
     }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }
