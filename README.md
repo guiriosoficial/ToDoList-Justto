@@ -1,15 +1,16 @@
 # ToDoList - Justto
-Este projeto foi meu desafio para um estágio na Justto, minha primeira aplicação em Vue.js  
+This project was my challenge for an internship job at Justto, my first application on Vue.js.  
 
-O desafio consiste em criar uma a **TODO List** seguindo os seguintes requisitos:   
-- Ser possivel inserir, editar e remover tarefas da lista, 
-- Ser desenvolvida em Vue.js com Webpack e ser uma SPA,
-- Criar uma página "Sobre" utilizando o vue-router (Bônus)  
+The challenge is create a **TODO List** that meets the following requirements:  
+- Be able to insert, edit and remove tasks from the list, 
+- Be developed in Vue.js with Webpack and be an SPA,
+- Have an "About" page using vue-router (Bonus)  
 
-**Nota:** Sim, eu consegui a vaga :D.
+**Note:** Yes, I got the job :D.
 
-## Executando o Projeto
-- **Requisitos básicos:** Node e NPM  
-- **Instalar Dependencias:** `npm install`  
-- **Iniciar Servidor:** `npm run serve`  
-- **Buildar o Projeto:** `npm run build`  
+## Project Setup
+- **Requirements:** `Node` and `NPM` installed  
+- **Install Dependencies:** `npm install`  
+- **Start Development Server:** `npm run serve`  
+- **Compiles For Production:** `npm run build`  
+- **Lints and Fixes Files**: `npm run lint`
