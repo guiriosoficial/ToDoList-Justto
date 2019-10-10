@@ -2,7 +2,7 @@
   <button
     v-show="number > 0"
     class="rmv-all"
-    title="Limpar lista de tarefas"
+    title="Clear List"
     @click="removeAll">
     <i class="fas fa-trash-alt" />
   </button>

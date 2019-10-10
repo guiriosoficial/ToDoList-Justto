@@ -4,8 +4,8 @@
       <h1>TODO List</h1>
       <div class="details">
         <span>Total: {{ counter.total }} &nbsp;</span>
-        <span>Feitas: {{ counter.done }} &nbsp;</span>
-        <span>Restantes: {{ counter.doing }} &nbsp;</span>
+        <span>Done: {{ counter.done }} &nbsp;</span>
+        <span>Left: {{ counter.doing }} &nbsp;</span>
       </div>
     </div>
     <router-link :to="link" class="nav">
@@ -20,7 +20,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'SOBRE',
+      default: 'ABOUT',
       required: true
     },
     counter: {
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     link () {
-      return this.title === 'SOBRE' ? '/about' : '/'
+      return this.title === 'ABOUT' ? '/about' : '/'
     }
   }
 }

@@ -2,10 +2,10 @@
   <div class="taskinput-container">
     <input
       v-model="taskName"
-      placeholder="Insira uma nova task aqui"
+      placeholder="Insert a new task here"
       autofocus
       @keyup.enter="addTask">
-    <button class="btn-icon" title="Adcionar Tarefa" @click="addTask">
+    <button class="btn-icon" title="Add Task" @click="addTask">
       <i class="fas fa-plus" />
     </button>
   </div>

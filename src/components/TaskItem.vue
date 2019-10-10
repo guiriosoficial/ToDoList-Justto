@@ -3,16 +3,16 @@
     <div v-if="!task.editing" :class="classDone" class="listitem">
       <div class="item-title">
         <label class="checkbox">
-          <input v-model="task.done" title="Marcar como FEITO" type="checkbox">
+          <input v-model="task.done" title="Mark as DONE" type="checkbox">
           <span class="checkmark" />
         </label>
         <span :class="classDone">{{ task.name }}</span>
       </div>
       <div style="display: flex; min-width: 65px;">
-        <button @click="editTask(task)">
+        <button title="Edit Task" @click="editTask(task)">
           <i class="far fa-edit" />
         </button>
-        <button @click="removeTask(task)">
+        <button title="Remove Task" @click="removeTask(task)">
           <i class="far fa-trash-alt" />
         </button>
       </div>
@@ -20,7 +20,7 @@
     <div v-if="task.editing" class="listitem">
       <div class="item-title">
         <label class="checkbox">
-          <input v-model="task.done" title="Marcar como FEITO" type="checkbox">
+          <input v-model="task.done" title="Mask as DONE" type="checkbox">
           <span class="checkmark" />
         </label>
         <input
@@ -29,7 +29,7 @@
           type="text"
           @keyup.enter="confirm">
       </div>
-      <button @click="confirm">
+      <button title="Confirm Edition" @click="confirm">
         <i class="fas fa-check" />
       </button>
     </div>

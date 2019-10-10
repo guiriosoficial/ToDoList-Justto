@@ -2,7 +2,7 @@
 This project was my challenge for an internship job at Justto, my first application on Vue.js.  
 
 The challenge is create a **TODO List** that meets the following requirements:  
-- Be able to insert, edit and remove tasks from the list, 
+- Be able to insert, edit and remove tasks from list, 
 - Be developed in Vue.js with Webpack and be an SPA,
 - Have an "About" page using vue-router (Bonus)  
 

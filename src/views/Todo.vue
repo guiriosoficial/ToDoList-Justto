@@ -1,11 +1,11 @@
 <template>
   <div>
-    <todo-header :counter="doingDone" title="SOBRE" />
+    <todo-header :counter="doingDone" title="ABOUT" />
     <task-input @add-task="addTask" />
 
     <div v-if="list.length === 0" class="empty">
       <i class="far fa-calendar-times" />
-      <p>Nenhuma tarefa por aqui!</p>
+      <p>No tasks Here!</p>
     </div>
 
     <ul v-else class="overflow">
@@ -75,7 +75,7 @@ export default {
       this.list[index].editing = true
     },
     removeAll () {
-      if (confirm('Tem certeza que deseja remover todas as ' + this.list.length + ' tarefas da lista?\nEsta Ação não pode ser desfeita.')) this.saveInCache(this.list = [])
+      if (confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')) this.saveInCache(this.list = [])
     },
     saveInCache () {
       const parsed = JSON.stringify(this.list)
