@@ -14,7 +14,7 @@
     "vue-components",
     "spa"
   ],
-  "description": "Desafio TODO List para vaga de estágio na Justto - CONCLUIDO",
+  "description": "TODO List Challenge for Internship Vacancy at Justto - DONE",
   "repository": "github:riwersxd/ToDoList-Justto",
   "main": "src/main.js",
   "private": true,
