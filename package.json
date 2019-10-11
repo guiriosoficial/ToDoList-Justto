@@ -62,28 +62,10 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/recommended",
+      "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {
-      "vue/html-closing-bracket-newline": [
-        "error",
-        {
-          "singleline": "never",
-          "multiline": "never"
-        }
-      ],
-      "vue/max-attributes-per-line": [
-        2,
-        {
-          "singleline": 3,
-          "multiline": {
-            "max": 3,
-            "allowFirstLine": false
-          }
-        }
-      ]
-    },
+    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
