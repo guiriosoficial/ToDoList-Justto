@@ -1,6 +1,10 @@
 {
   "name": "todolist-justto",
-  "author": "Guilherme Rios da Cunha <guilherme.rc.98@gmail.com> (https://riwersxd.github.io)",
+  "author": {
+    "name": "Guilherme Rios da Cunha",
+    "email": "guilherme.rc.98@gmail.com",
+    "url": "https://riwersxd.github.io"
+  },
   "bugs": "https://github.com/riwersxd/ToDoList-Justto/issues",
   "homepage": "https://github.com/riwersxd/ToDoList-Justto",
   "version": "2.0.0",
@@ -15,7 +19,10 @@
     "spa"
   ],
   "description": "TODO List Challenge for Internship Vacancy at Justto - DONE",
-  "repository": "github:riwersxd/ToDoList-Justto",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/riwersxd/ToDoList-Justto.git"
+  },
   "main": "src/main.js",
   "private": true,
   "scripts": {
