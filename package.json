@@ -19,7 +19,7 @@
     "spa"
   ],
   "description": "TODO List Challenge for Internship Vacancy at Justto - DONE",
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/riwersxd/ToDoList-Justto.git"
   },
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+    "@vue/cli-service": "^4.1.2",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
