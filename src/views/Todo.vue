@@ -1,9 +1,12 @@
 <template>
   <div>
-    <todo-header :counter="doingDone" title="ABOUT" />
+    <todo-header
+      :counter="doingDone"
+      title="ABOUT"
+    />
     <task-input @add-task="addTask" />
 
-    <div v-if="list.length === 0" class="empty">
+    <div v-if="!list.length" class="empty">
       <i class="far fa-calendar-times" />
       <p>No tasks Here!</p>
     </div>
@@ -15,10 +18,14 @@
         :task="task"
         @edit-task="editTask"
         @remove-task="removeTask"
-        @save-edition="saveInCache" />
+        @save-edition="saveInCache"
+      />
     </ul>
 
-    <clean-tasks :number="list.length" @remove-all="removeAll" />
+    <clean-tasks
+      :number="list.length"
+      @remove-all="removeAll"
+    />
   </div>
 </template>
 

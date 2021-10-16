@@ -11,7 +11,7 @@
         <span><b>Back</b></span>
       </router-link>
       <span class="credits">
-        Made with &hearts; by <a href="http://github.com/riwersxd" target="_blank">riwersxd</a>
+        Made with &hearts; by <a href="http://github.com/guiriosoficial" target="_blank">guiriosoficial</a>
       </span>
     </div>
   </div>

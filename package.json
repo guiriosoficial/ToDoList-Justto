@@ -3,10 +3,10 @@
   "author": {
     "name": "Guilherme Rios da Cunha",
     "email": "guilherme.rc.98@gmail.com",
-    "url": "https://riwersxd.github.io"
+    "url": "https://guiriosoficial.github.io"
   },
-  "bugs": "https://github.com/riwersxd/ToDoList-Justto/issues",
-  "homepage": "https://github.com/riwersxd/ToDoList-Justto",
+  "bugs": "https://github.com/guiriosoficial/ToDoList-Justto/issues",
+  "homepage": "https://github.com/guiriosoficial/ToDoList-Justto",
   "version": "2.0.0",
   "license": "MIT",
   "keywords": [
@@ -21,10 +21,10 @@
   "description": "TODO List Challenge for Internship Vacancy at Justto - DONE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/riwersxd/ToDoList-Justto.git"
+    "url": "https://github.com/guiriosoficial/ToDoList-Justto.git"
   },
   "main": "src/main.js",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -44,7 +44,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^10.2.0",
     "vue-template-compiler": "^2.5.21"
   },
   "engines": {

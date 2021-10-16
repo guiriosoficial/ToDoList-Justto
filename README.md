@@ -9,10 +9,10 @@ The challenge is create a **TODO List** that meets the following requirements:
 - Have an "About" page using vue-router (Bonus)  
 
 ## Project Setup
-- **Requirements:** `Node` and `NPM` installed  
+- **Requirements:** `Node` (>=8.0.0) and `NPM` (>=6.0.0) installed  
 - **Install Dependencies:** `npm install`  
 - **Start Development Server:** `npm run serve`  
 - **Compiles For Production:** `npm run build`  
-- **Lints and Fixes Files**: `npm run lint`   
+- **Lints and Fixes Files**: `npm run lint`  
 
 > **Note:** Yes, I got the job :D. 
