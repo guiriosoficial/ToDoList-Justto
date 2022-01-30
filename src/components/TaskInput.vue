@@ -4,8 +4,13 @@
       v-model="taskName"
       placeholder="Insert a new task here"
       autofocus
-      @keyup.enter="addTask">
-    <button class="btn-icon" title="Add Task" @click="addTask">
+      @keyup.enter="addTask"
+    >
+    <button
+      class="btn-icon"
+      title="Add Task"
+      @click="addTask"
+    >
       <i class="fas fa-plus" />
     </button>
   </div>

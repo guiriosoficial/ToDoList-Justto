@@ -3,7 +3,8 @@
     v-show="number > 0"
     class="rmv-all"
     title="Clear List"
-    @click="removeAll">
+    @click="removeAll"
+  >
     <i class="fas fa-trash-alt" />
   </button>
 </template>

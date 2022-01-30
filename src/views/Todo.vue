@@ -6,12 +6,18 @@
     />
     <task-input @add-task="addTask" />
 
-    <div v-if="!list.length" class="empty">
+    <div
+      v-if="!list.length"
+      class="empty"
+    >
       <i class="far fa-calendar-times" />
       <p>No tasks Here!</p>
     </div>
 
-    <ul v-else class="overflow">
+    <ul
+      v-else
+      class="overflow"
+    >
       <task-item
         v-for="(task, index) in list"
         :key="index"

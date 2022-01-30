@@ -8,7 +8,10 @@
         <span>Left: {{ counter.doing }} &nbsp;</span>
       </div>
     </div>
-    <router-link :to="link" class="nav">
+    <router-link
+      :to="link"
+      class="nav"
+    >
       {{ title }}
     </router-link>
   </header>

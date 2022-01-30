@@ -1,35 +1,62 @@
 <template>
   <li class="itemlist-container">
-    <div v-if="!task.editing" :class="classDone" class="listitem">
+    <div
+      v-if="!task.editing"
+      :class="classDone"
+      class="listitem"
+    >
       <div class="item-title">
         <label class="checkbox">
-          <input v-model="task.done" title="Mark as DONE" type="checkbox">
+          <input
+            v-model="task.done"
+            title="Mark as DONE"
+            type="checkbox"
+          >
           <span class="checkmark" />
         </label>
-        <span :class="classDone">{{ task.name }}</span>
+        <span :class="classDone">
+          {{ task.name }}
+        </span>
       </div>
       <div style="display: flex; min-width: 65px;">
-        <button title="Edit Task" @click="editTask(task)">
+        <button
+          title="Edit Task"
+          @click="editTask(task)"
+        >
           <i class="far fa-edit" />
         </button>
-        <button title="Remove Task" @click="removeTask(task)">
+        <button
+          title="Remove Task"
+          @click="removeTask(task)"
+        >
           <i class="far fa-trash-alt" />
         </button>
       </div>
     </div>
-    <div v-if="task.editing" class="listitem">
+    <div
+      v-if="task.editing"
+      class="listitem"
+    >
       <div class="item-title">
         <label class="checkbox">
-          <input v-model="task.done" title="Mask as DONE" type="checkbox">
+          <input
+            v-model="task.done"
+            title="Mask as DONE"
+            type="checkbox"
+          >
           <span class="checkmark" />
         </label>
         <input
           ref="task"
           v-model="task.name"
           type="text"
-          @keyup.enter="confirm">
+          @keyup.enter="confirm"
+        >
       </div>
-      <button title="Confirm Edition" @click="confirm">
+      <button
+        title="Confirm Edition"
+        @click="confirm"
+      >
         <i class="fas fa-check" />
       </button>
     </div>
@@ -76,11 +103,11 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss">
 @import '@/styles/colors.scss';
+
 .task-done {
   text-decoration: line-through;
   background-color: $--color-grey-hover !important;
