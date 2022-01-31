@@ -11,8 +11,8 @@ The challenge is create a **TODO List** that meets the following requirements:
 ## Project Setup
 - **Requirements:** `Node` (^16.13.1) and `NPM` (>=8.1.2) installed  
 - **Install Dependencies:** `npm install`  
-- **Start Development Server:** `npm run serve`  
-- **Compiles For Production:** `npm run build`  
+- **Start Development Server:** `npm run serve` (Run on [http://localhost:8080/](http://localhost:8080/))  
+- **Compiles For Production:** `npm run build` (Build in `/dist`)  
 - **Lints and Fixes Files**: `npm run lint`  
 
 > **Note:** Yes, I got the job :D. 
