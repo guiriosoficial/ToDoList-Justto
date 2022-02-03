@@ -6,7 +6,7 @@
     "url": "https://guiriosoficial.github.io"
   },
   "bugs": "https://github.com/guiriosoficial/ToDoList-Justto/issues",
-  "homepage": "https://github.com/guiriosoficial/ToDoList-Justto",
+  "homepage": "/",
   "version": "2.0.0",
   "license": "MIT",
   "keywords": [
@@ -21,7 +21,7 @@
   "description": "TODO List Challenge for Internship Vacancy at Justto - DONE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/guiriosoficial/ToDoList-Justto.git"
+    "url": "https://github.com/guiriosoficial/ToDoList-Justto"
   },
   "main": "src/main.js",
   "private": false,

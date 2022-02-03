@@ -23,12 +23,10 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'ABOUT',
-      required: true
+      default: 'ABOUT'
     },
     counter: {
       type: Object,
-      required: true,
       default: () => ({
         doing: 0,
         done: 0,

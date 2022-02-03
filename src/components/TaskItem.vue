@@ -69,12 +69,8 @@ export default {
   props: {
     task: {
       type: Object,
-      required: true,
-      default: () => ({
-        name: 'Ops! Isto não é uma tarefa.',
-        done: false,
-        editing: false
-      })
+      required: true
+
     }
   },
   data () {

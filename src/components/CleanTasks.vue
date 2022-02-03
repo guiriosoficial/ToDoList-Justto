@@ -15,8 +15,7 @@ export default {
   props: {
     number: {
       type: Number,
-      default: 0,
-      required: true
+      default: 0
     }
   },
   methods: {
