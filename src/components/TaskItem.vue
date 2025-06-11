@@ -23,13 +23,13 @@
           title="Edit Task"
           @click="editTask(task)"
         >
-          <i class="far fa-edit" />
+          <FontAwesomeIcon icon="edit" />
         </button>
         <button
           title="Remove Task"
           @click="removeTask(task)"
         >
-          <i class="far fa-trash-alt" />
+          <FontAwesomeIcon icon="trash-alt" />
         </button>
       </div>
     </div>
@@ -57,7 +57,7 @@
         title="Confirm Edition"
         @click="confirm"
       >
-        <i class="fas fa-check" />
+        <FontAwesomeIcon icon="check" />
       </button>
     </div>
   </li>
@@ -65,7 +65,6 @@
 
 <script>
 export default {
-  name: 'TaskItem',
   props: {
     task: {
       type: Object,
@@ -102,11 +101,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/colors.scss';
-
 .task-done {
   text-decoration: line-through;
-  background-color: $--color-grey-hover !important;
+  background-color: colors.$color-grey-hover !important;
 }
 .itemlist-container {
   display: flex;
@@ -120,8 +117,8 @@ export default {
     height: 50px;
     padding: 0 20px;
     margin-bottom: 12px;
-    background-color: $--color-grey-light;
-    color: $--color-text-primary;
+    background-color: colors.$color-grey-light;
+    color: colors.$color-text-primary;
     font-size: 18px;
     .item-title {
       display: flex;
@@ -158,7 +155,7 @@ export default {
           height: 20px;
           width: 20px;
           border-radius: 2px;
-          background-color: $--color-text-secondary;
+          background-color: colors.$color-text-secondary;
           &:after {
             content: "";
             position: absolute;
@@ -167,13 +164,13 @@ export default {
             top: 2px;
             width: 5px;
             height: 9px;
-            border: solid $--color-white;
+            border: solid colors.$color-white;
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
           }
         }
         input:checked ~ .checkmark {
-          background-color: $--color-primary;
+          background-color: colors.$color-primary;
           &:after {
             display: block;
           }
@@ -181,13 +178,13 @@ export default {
       }
     }
     &:hover {
-      background-color: $--color-grey-hover;
+      background-color: colors.$color-grey-hover;
     }
   }
   &:nth-child(even) .listitem {
-    background-color: $--color-grey-dark;
+    background-color: colors.$color-grey-dark;
     &:hover {
-      background-color: $--color-grey-hover;
+      background-color: colors.$color-grey-hover;
     }
   }
 }

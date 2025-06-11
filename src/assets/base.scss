@@ -1,0 +1,15 @@
+@use "sass:color";
+
+$color-white: #fafafa !default;
+$color-black: #000000 !default;
+$color-grey-light: color.mix(#dcdcdc, $color-white, 50%) !default;
+$color-grey-dark: color.mix(#d3d3d3, $color-white, 50%) !default;
+$color-grey-hover: color.mix(#c0c0c0, $color-white, 50%) !default;
+
+$color-primary: #1c75db !default;
+$color-primary-light: #2993de !default;
+$color-primary-dark: #0c609c !default;
+
+$color-text-primary: #48484a !default;
+$color-text-secondary: #68686b !default;
+$color-text-hover: #808080 !default;

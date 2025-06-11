@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-@import '@/styles/colors.scss';
 
 * {
   text-decoration: none;
@@ -11,21 +10,22 @@
   box-shadow: none;
   box-sizing: border-box;
   font-family: 'Muli', sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 input {
-  color: $--color-text-primary;
+  color: colors.$color-text-primary;
   background: none;
   width: 100%;
 }
 
 button {
-  color: $--color-text-secondary;
+  color: colors.$color-text-secondary;
   background: none;
   margin-left: 14px;
   font-size: 18px;
   cursor: pointer;
   &:hover {
-    color: $--color-text-primary;
+    color: colors.$color-text-primary;
   }
 }

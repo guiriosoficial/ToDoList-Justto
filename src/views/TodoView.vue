@@ -1,16 +1,19 @@
 <template>
   <div>
-    <todo-header
+    <TodoHeader
       :counter="doingDone"
       title="ABOUT"
     />
-    <task-input @add-task="addTask" />
+    <TaskInput @add-task="addTask" />
 
     <div
       v-if="!list.length"
       class="empty"
     >
-      <i class="far fa-calendar-times" />
+      <FontAwesomeIcon
+        class="empty-icon"
+        icon="calendar-times"
+      />
       <p>No tasks Here!</p>
     </div>
 
@@ -18,7 +21,7 @@
       v-else
       class="overflow"
     >
-      <task-item
+      <TaskItem
         v-for="(task, index) in list"
         :key="index"
         :task="task"
@@ -28,7 +31,7 @@
       />
     </ul>
 
-    <clean-tasks
+    <CleanTasks
       :number="list.length"
       @remove-all="removeAll"
     />
@@ -36,13 +39,13 @@
 </template>
 
 <script>
-import TodoHeader from '@/components/TodoHeader'
-import CleanTasks from '@/components/CleanTasks'
-import TaskInput from '@/components/TaskInput'
-import TaskItem from '@/components/TaskItem'
+import TodoHeader from '@/components/TodoHeader.vue'
+import CleanTasks from '@/components/CleanTasks.vue'
+import TaskInput from '@/components/TaskInput.vue'
+import TaskItem from '@/components/TaskItem.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
-  name: 'Todo',
   components: {
     TodoHeader,
     CleanTasks,
@@ -99,17 +102,18 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/colors.scss';
-
 .empty {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: calc(100vh - 130px);
-  color: $--color-text-primary;
-  p { font-size: 20px; margin-top: 16px; }
-  i { font-size: 48px; }
+  color: colors.$color-text-primary;
+  font-size: 20px;
+  gap: 16px;
+  .empty-icon {
+    font-size: 48px;
+  }
 }
 .overflow {
   height: calc(100vh - 130px);
@@ -120,14 +124,14 @@ export default {
   width: 8px;
 }
 ::-webkit-scrollbar-track-piece {
-  background-color: $--color-grey-light;
+  background-color: colors.$color-grey-light;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: $--color-primary-light;
+  background-color: colors.$color-primary-light;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: $--color-primary;
+  background-color: colors.$color-primary;
 }
 
 </style>

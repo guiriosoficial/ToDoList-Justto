@@ -11,14 +11,13 @@
       title="Add Task"
       @click="addTask"
     >
-      <i class="fas fa-plus" />
+      <FontAwesomeIcon icon="plus" />
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TaskInput',
   data () {
     return {
       taskName: ''
@@ -36,8 +35,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/colors.scss';
-
 .taskinput-container {
   display: flex;
   align-items: center;
@@ -45,9 +42,9 @@ export default {
   height: 60px;
   width: 100%;
   padding: 0px 20px;
-  background-color: $--color-grey-dark;
+  background-color: colors.$color-grey-dark;
   &:hover {
-    background-color: $--color-grey-hover;
+    background-color: colors.$color-grey-hover;
   }
   input, button {
     height: 60px;
@@ -55,7 +52,7 @@ export default {
     font-size: 20px;
   }
   ::-webkit-input-placeholder {
-    color: $--color-text-secondary;
+    color: colors.$color-text-secondary;
   }
 }
 </style>
