@@ -1,5 +1,5 @@
 <template>
-  <div class="taskinput-container">
+  <div class="task-input-container">
     <input
       v-model="taskName"
       placeholder="Insert a new task here"
@@ -34,21 +34,23 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.taskinput-container {
+<style scoped lang="scss">
+@use "../assets/colors";
+
+.task-input-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
   width: 100%;
-  padding: 0px 20px;
+  padding: 0 20px;
   background-color: colors.$color-grey-dark;
   &:hover {
     background-color: colors.$color-grey-hover;
   }
   input, button {
     height: 60px;
-    padding: 20px 0px;
+    padding: 20px 0;
     font-size: 20px;
   }
   ::-webkit-input-placeholder {

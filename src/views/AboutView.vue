@@ -39,6 +39,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use "../assets/colors";
+
 .about-container {
   height: calc(100vh - 70px);
   display: flex;

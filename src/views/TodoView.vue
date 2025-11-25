@@ -43,7 +43,6 @@ import TodoHeader from '@/components/TodoHeader.vue'
 import CleanTasks from '@/components/CleanTasks.vue'
 import TaskInput from '@/components/TaskInput.vue'
 import TaskItem from '@/components/TaskItem.vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   components: {
@@ -67,11 +66,11 @@ export default {
     }
   },
   beforeMount () {
-    if (localStorage.getItem('justtodo')) {
+    if (localStorage.getItem('jus-todo')) {
       try {
-        this.list = JSON.parse(localStorage.getItem('justtodo'))
+        this.list = JSON.parse(localStorage.getItem('jus-todo'))
       } catch {
-        localStorage.removeItem('justtodo')
+        localStorage.removeItem('jus-todo')
       }
     }
   },
@@ -95,13 +94,15 @@ export default {
     },
     saveInCache () {
       const parsed = JSON.stringify(this.list)
-      localStorage.setItem('justtodo', parsed)
+      localStorage.setItem('jus-todo', parsed)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@use "../assets/colors";
+
 .empty {
   display: flex;
   justify-content: center;

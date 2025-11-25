@@ -41,7 +41,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@use "../assets/colors";
+
 .header {
   display: flex;
   justify-content: space-between;

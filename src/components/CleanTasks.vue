@@ -25,12 +25,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@use "../assets/colors";
+
 .rmv-all {
   position: absolute;
   left: 50%;
   top: 100%;
-  transition: 0.1s ease-in-out;
   transform: translate(-50%, -38%);
   background-color: colors.$color-text-primary;
   border-radius: 50%;

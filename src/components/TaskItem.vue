@@ -1,9 +1,9 @@
 <template>
-  <li class="itemlist-container">
+  <li class="list-item-container">
     <div
       v-if="!task.editing"
       :class="classDone"
-      class="listitem"
+      class="list-item"
     >
       <div class="item-title">
         <label class="checkbox">
@@ -35,7 +35,7 @@
     </div>
     <div
       v-if="task.editing"
-      class="listitem"
+      class="list-item"
     >
       <div class="item-title">
         <label class="checkbox">
@@ -100,14 +100,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@use "../assets/colors";
+
 .task-done {
   text-decoration: line-through;
   background-color: colors.$color-grey-hover !important;
 }
-.itemlist-container {
+.list-item-container {
   display: flex;
-  .listitem {
+  .list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -130,7 +132,7 @@ export default {
       }
       input, button {
         height: 50px;
-        padding: 16px 0px;
+        padding: 16px 0;
         font-size: 18px;
       }
       .checkbox {
@@ -181,7 +183,7 @@ export default {
       background-color: colors.$color-grey-hover;
     }
   }
-  &:nth-child(even) .listitem {
+  &:nth-child(even) .list-item {
     background-color: colors.$color-grey-dark;
     &:hover {
       background-color: colors.$color-grey-hover;
