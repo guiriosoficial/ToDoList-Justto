@@ -3,18 +3,29 @@ This project was my challenge for an internship job at Justto, my first applicat
 Justto 3DR is the only data-based dispute resolution platform for law firms and legal departments!  
 
 ## The Challenge
-The challenge is create a **TODO List** that meets the following requirements:  
-- Be able to insert, edit and remove tasks from list,  
+The challenge is to create a **TODO List** that meets the following requirements:  
+- Be able to insert, edit and remove tasks from the list,  
 - Be developed in Vue.js with Webpack and be an SPA,  
 - Have an "About" page using vue-router (Bonus)  
 
 ## Project Setup
-- **Requirements:**
-  - `Node` (^16.13.1)
-  - `NPM` (^8.1.2)
-- **Install Dependencies:** `npm install`
-- **Start Development Server:** `npm run serve` (Runs on [http://localhost:8080/](http://localhost:8080/))
-- **Compiles For Production:** `npm run build` (Will be Build in `/dist`)
-- **Lints and Fixes Files**: `npm run lint`
+**Install Dependencies:**
+```
+npm install
+```
+
+**Start Development Server:**
+```
+npm run dev
+```
+**Compiles For Production:**
+```
+npm run build
+```
+
+## TODO
+- Implements Unit Tests
+- Set Lint Configurations
+- Migrate from JavaScript to TypeScript
 
 > **Note:** Yes, I got the job :D. 
