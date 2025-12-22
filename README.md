@@ -22,6 +22,9 @@ npm run dev
 npm run build
 ```
 
+## Update
+To maintain this project update, I migrated from Vue 2 to Vue 3, Webpack to Vite and JavaScript to TypeScript
+
 ## TODO
 - Implements Unit Tests
 - Set Lint Configurations
