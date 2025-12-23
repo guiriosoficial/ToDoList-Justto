@@ -1,4 +1,4 @@
-# ToDoList ![Justto 3DR](https://justto.app/img/logo.2e90c3e0.svg)
+# ToDoList ![Justto 3DR](https://raw.githubusercontent.com/guiriosoficial/ToDoList-Justto/refs/heads/master/public/justto-logo.svg)
 This project was my challenge for an internship job at Justto, my first application on Vue.js.
 Justto 3DR is the only data-based dispute resolution platform for law firms and legal departments!
 
@@ -9,15 +9,15 @@ The challenge is to create a **TODO List** that meets the following requirements
 - Have an "About" page using vue-router (Bonus)
 
 ## Project Setup
-**Install Dependencies:**
+- **Install Dependencies:**
 ```
 npm install
 ```
-**Start Development Server:**
+- **Start Development Server:**
 ```
 npm run dev
 ```
-**Compiles For Production:**
+- **Compiles For Production:**
 ```
 npm run build
 ```
