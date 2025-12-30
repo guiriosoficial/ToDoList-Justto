@@ -32,6 +32,7 @@ To maintain this project update, I migrated from Vue 2 to Vue 3, Webpack to Vite
 
 ## TODO
 - Implements Tests
-- Block simultaneous task editing
+- Review Classes Names
+- Review Duplicated Code in TaskItem.vue
 
 > **Note:** Yes, I got the job :D.

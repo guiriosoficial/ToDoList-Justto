@@ -3,7 +3,7 @@
     v-show="number > 0"
     class="remove-all-button"
     title="Clear List"
-    @click="removeAll"
+    @click="handleRemoveAll"
   >
     <FontAwesomeIcon icon="trash-alt" />
   </button>
@@ -19,7 +19,7 @@ export default {
   },
   emits: ['remove-all'],
   methods: {
-    removeAll () {
+    handleRemoveAll() {
       this.$emit('remove-all')
     }
   }

@@ -4,7 +4,7 @@
       :counter="doingDone"
       title="ABOUT"
     />
-    <TaskInput @add-task="addTask" />
+    <TaskInput @create-task="handleCreateTask" />
 
     <div
       v-if="!list.length"
@@ -25,14 +25,16 @@
         v-for="task in list"
         :key="task.id"
         :task="task"
-        @update-task="updateTask"
-        @remove-task="removeTask"
+        :is-editing="editingTaskId === task.id"
+        @update-task="handleUpdateTask"
+        @remove-task="handleRemoveTask"
+        @edit-task="handleStartEdit"
       />
     </ul>
 
     <CleanTasks
       :number="list.length"
-      @remove-all="removeAll"
+      @remove-all="handleRemoveAll"
     />
   </div>
 </template>
@@ -51,13 +53,14 @@ export default {
     TaskInput,
     TaskItem
   },
-  data () {
+  data() {
     return {
-      list: [] as ITask[]
+      list: [] as ITask[],
+      editingTaskId: null as number | null
     }
   },
   computed: {
-    doingDone () {
+    doingDone() {
       return {
         doing: this.list.filter((item: ITask) => !item.done).length,
         done: this.list.filter((item: ITask) => item.done).length,
@@ -65,7 +68,7 @@ export default {
       }
     }
   },
-  beforeMount () {
+  beforeMount() {
     if (localStorage.getItem('jus-todo')) {
       try {
         const localItems = localStorage.getItem('jus-todo') ?? ''
@@ -76,7 +79,7 @@ export default {
     }
   },
   methods: {
-    addTask (task: string) {
+    handleCreateTask(task: string) {
       this.list.push({
         id: Date.now(),
         name: task,
@@ -84,18 +87,21 @@ export default {
       })
       this.saveInCache()
     },
-    removeTask (task: ITask) {
+    handleStartEdit(taskId: number) {
+      this.editingTaskId = taskId
+    },
+    handleRemoveTask(task: ITask) {
       this.list = this.list.filter(t => t !== task)
       this.saveInCache()
     },
-    updateTask (task: ITask) {
+    handleUpdateTask(task: ITask) {
       const index = this.list.findIndex(t => t.id === task.id);
       if (index !== -1) {
         this.list.splice(index, 1, task);
         this.saveInCache();
       }
     },
-    removeAll () {
+    handleRemoveAll() {
       const confirmed = confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')
 
       if (confirmed) {
@@ -103,7 +109,7 @@ export default {
         this.saveInCache()
       }
     },
-    saveInCache () {
+    saveInCache() {
       const parsed = JSON.stringify(this.list)
       localStorage.setItem('jus-todo', parsed)
     }

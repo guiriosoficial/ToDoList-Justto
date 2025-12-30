@@ -5,12 +5,12 @@
       class="task-input-container__input"
       placeholder="Insert a new task here"
       autofocus
-      @keyup.enter="addTask"
+      @keyup.enter="handleCreateTask"
     >
     <button
       class="task-input-container__button"
       title="Add Task"
-      @click="addTask"
+      @click="handleCreateTask"
     >
       <FontAwesomeIcon icon="plus" />
     </button>
@@ -19,16 +19,16 @@
 
 <script lang="ts">
 export default {
-  emits: ['add-task'],
-  data () {
+  emits: ['create-task'],
+  data() {
     return {
       taskName: ''
     }
   },
   methods: {
-    addTask () {
+    handleCreateTask() {
       if (this.taskName !== '') {
-        this.$emit('add-task', this.taskName)
+        this.$emit('create-task', this.taskName)
         this.taskName = ''
       }
     }

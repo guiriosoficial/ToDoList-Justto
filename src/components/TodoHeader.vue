@@ -36,7 +36,7 @@ export default {
     }
   },
   computed: {
-    link () {
+    link() {
       return this.title === 'ABOUT' ? '/about' : '/'
     }
   }

@@ -11,7 +11,7 @@
             :checked="task.done"
             title="Mark as DONE"
             type="checkbox"
-            @change="toggleDone"
+            @change="handleToggleDone"
           >
           <span class="task-list-container__item-checkmark" />
         </label>
@@ -19,16 +19,16 @@
           {{ task.name }}
         </span>
       </div>
-      <div style="display: flex; min-width: 65px;">
+      <div class="task-list-container__item-actions">
         <button
           title="Edit Task"
-          @click="editTask()"
+          @click="handleEditTask()"
         >
           <FontAwesomeIcon icon="edit" />
         </button>
         <button
           title="Remove Task"
-          @click="removeTask()"
+          @click="handleRemoveTask"
         >
           <FontAwesomeIcon icon="trash-alt" />
         </button>
@@ -44,7 +44,7 @@
             :checked="task.done"
             title="Mask as DONE"
             type="checkbox"
-            @change="toggleDone"
+            @change="handleToggleDone"
           >
           <span class="task-list-container__item-checkmark" />
         </label>
@@ -52,14 +52,22 @@
           ref="task"
           v-model="localName"
           type="text"
-          @keyup.enter="confirm"
+          @keyup.enter="handleConfirmEdition"
+          @keyup.esc="handleCancelEdition"
+          @blur="handleCancelEdition"
         >
       </div>
       <button
         title="Confirm Edition"
-        @click="confirm"
+        @click="handleConfirmEdition"
       >
         <FontAwesomeIcon icon="check" />
+      </button>
+      <button
+        title="Cancel Edition"
+        @click="handleCancelEdition"
+      >
+        <FontAwesomeIcon icon="close" />
       </button>
     </div>
   </li>
@@ -74,43 +82,56 @@ export default {
     task: {
       type: Object as PropType<ITask>,
       required: true
+    },
+    isEditing: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
     'remove-task',
-    'update-task'
+    'update-task',
+    'edit-task'
   ],
-  data () {
+  data() {
     return {
-      isEditing: false,
       localName: this.task.name
     }
   },
   computed: {
-    classDone () {
+    classDone() {
       return this.task.done ? 'task-done' : ''
     }
   },
-  methods: {
-    toggleDone () {
-      this.$emit('update-task', { ...this.task, done: !this.task.done })
-    },
-    removeTask () {
-      this.$emit('remove-task', this.task)
-    },
-    editTask () {
-      this.isEditing = true
+  watch: {
+    isEditing(newValue) {
+      if (!newValue) return
+
       this.localName = this.task.name
       this.$nextTick(() => {
         const input = this.$refs.task as HTMLInputElement
         input?.focus()
       })
+    }
+  },
+  methods: {
+    handleToggleDone() {
+      this.$emit('update-task', { ...this.task, done: !this.task.done })
     },
-    confirm() {
-      if (this.localName.trim() !== '') {
-        this.$emit('update-task', { ...this.task, name: this.localName });
-        this.isEditing = false;
-      }
+    handleRemoveTask() {
+      this.$emit('remove-task', this.task)
+    },
+    handleEditTask() {
+      this.$emit('edit-task', this.task.id)
+    },
+    handleConfirmEdition() {
+      if (this.localName.trim() == '') return
+
+      this.$emit('update-task', { ...this.task, name: this.localName });
+      this.$emit('edit-task', null);
+    },
+    handleCancelEdition() {
+      this.$emit('edit-task', null);
     }
   }
 }
@@ -132,7 +153,7 @@ export default {
     border-radius: 2px;
     width: 100%;
     max-width: 100%;
-    height: 50px;
+    height: 56px;
     padding: 0 20px;
     margin-bottom: 12px;
     background-color: colors.$color-grey-light;
@@ -194,6 +215,11 @@ export default {
           }
         }
       }
+    }
+    .task-list-container__item-actions {
+      display: flex;
+      align-items: center;
+      min-width: 64px;
     }
     &:hover {
       background-color: colors.$color-grey-hover;
