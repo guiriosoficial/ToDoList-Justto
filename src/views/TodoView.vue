@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import { ITask } from '@/types'
 import TodoHeader from '@/components/TodoHeader.vue'
 import CleanTasks from '@/components/CleanTasks.vue'
 import TaskInput from '@/components/TaskInput.vue'
@@ -53,14 +54,14 @@ export default {
   },
   data () {
     return {
-      list: []
+      list: [] as ITask
     }
   },
   computed: {
     doingDone () {
       return {
-        doing: this.list.filter(item => !item.done).length,
-        done: this.list.filter(item => item.done).length,
+        doing: this.list.filter((item: ITask) => !item.done).length,
+        done: this.list.filter((item: ITask) => item.done).length,
         total: this.list.length
       }
     }
@@ -68,29 +69,39 @@ export default {
   beforeMount () {
     if (localStorage.getItem('jus-todo')) {
       try {
-        this.list = JSON.parse(localStorage.getItem('jus-todo'))
+        const localItems = localStorage.getItem('jus-todo') ?? ''
+        this.list = JSON.parse(localItems)
       } catch {
         localStorage.removeItem('jus-todo')
       }
     }
   },
   methods: {
-    addTask (task) {
-      this.list.push({ name: task, done: false, editing: false })
+    addTask (task: string) {
+      this.list.push({
+        name: task,
+        done: false,
+        editing: false
+      })
       this.saveInCache()
     },
-    removeTask (task) {
-      let index = this.list.indexOf(task)
+    removeTask (task: ITask) {
+      const index = this.list.indexOf(task)
       this.list.splice(index, 1)
       this.saveInCache()
     },
-    editTask (task) {
-      let index = this.list.indexOf(task)
-      this.list.forEach(item => (item.editing = false))
+    editTask (task: ITask) {
+      const index = this.list.indexOf(task)
+      this.list.forEach((item: ITask) => (item.editing = false))
       this.list[index].editing = true
     },
     removeAll () {
-      if (confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')) this.saveInCache(this.list = [])
+      const confirmed = confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')
+
+      if (confirmed) {
+        this.list = []
+        this.saveInCache()
+      }
     },
     saveInCache () {
       const parsed = JSON.stringify(this.list)

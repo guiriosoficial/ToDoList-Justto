@@ -5,7 +5,7 @@
     title="Clear List"
     @click="removeAll"
   >
-     <FontAwesomeIcon icon="trash-alt" />
+    <FontAwesomeIcon icon="trash-alt" />
   </button>
 </template>
 
@@ -17,6 +17,7 @@ export default {
       default: 0
     }
   },
+  emits: ['remove-all'],
   methods: {
     removeAll () {
       this.$emit('remove-all')

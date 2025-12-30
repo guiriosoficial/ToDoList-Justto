@@ -64,14 +64,22 @@
 </template>
 
 <script lang="ts">
+import type { ITask } from '@/types'
+import type { PropType } from 'vue'
+
 export default {
   props: {
     task: {
-      type: Object,
+      type: Object as PropType<ITask>,
       required: true
 
     }
   },
+  emits: [
+    'remove-task',
+    'edit-task',
+    'save-edition'
+  ],
   data () {
     return {
       editing: false
@@ -83,14 +91,14 @@ export default {
     }
   },
   methods: {
-    removeTask (task) {
+    removeTask (task: ITask) {
       this.$emit('remove-task', task)
     },
-    editTask (task) {
+    editTask (task: ITask) {
       this.$emit('edit-task', task)
       this.$nextTick(() => this.$refs.task.focus())
     },
-    confirm (task) {
+    confirm (task: ITask) {
       if (task !== '') {
         this.task.editing = false
         this.$emit('save-edition', task.name)

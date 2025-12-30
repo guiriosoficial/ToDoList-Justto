@@ -18,6 +18,7 @@
 
 <script lang="ts">
 export default {
+  emits: ['add-task'],
   data () {
     return {
       taskName: ''
