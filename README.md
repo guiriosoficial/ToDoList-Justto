@@ -27,6 +27,6 @@ To maintain this project update, I migrated from Vue 2 to Vue 3, Webpack to Vite
 
 ## TODO
 - Implements Tests
-- Fix Types and Lint
+- Block simultaneous task editing
 
 > **Note:** Yes, I got the job :D.

@@ -1,11 +1,13 @@
 <template>
   <header class="header-container">
     <div>
-      <h1 class="header-container__logo">TODO List</h1>
+      <h1 class="header-container__logo">
+        TODO List
+      </h1>
       <div class="header-container__details">
-        <span>Total: {{ counter.total }} &nbsp;</span>
-        <span>Done: {{ counter.done }} &nbsp;</span>
-        <span>Left: {{ counter.doing }} &nbsp;</span>
+        <span>Total: {{ counter.total }}</span>
+        <span>Done: {{ counter.done }}</span>
+        <span>Left: {{ counter.doing }}</span>
       </div>
     </div>
     <RouterLink
@@ -58,6 +60,8 @@ export default {
     color: colors.$color-white;
   }
   .header-container__details {
+    display: flex;
+    gap: 8px;
     font-size: 14px;
     color: colors.$color-white;
   }

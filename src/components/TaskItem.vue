@@ -1,16 +1,17 @@
 <template>
   <li class="task-list-container">
     <div
-      v-if="!task.editing"
+      v-if="!isEditing"
       :class="classDone"
       class="task-list-container__item"
     >
       <div class="task-list-container__item-title">
         <label class="task-list-container__item-checkbox">
           <input
-            v-model="task.done"
+            :checked="task.done"
             title="Mark as DONE"
             type="checkbox"
+            @change="toggleDone"
           >
           <span class="task-list-container__item-checkmark" />
         </label>
@@ -21,34 +22,35 @@
       <div style="display: flex; min-width: 65px;">
         <button
           title="Edit Task"
-          @click="editTask(task)"
+          @click="editTask()"
         >
           <FontAwesomeIcon icon="edit" />
         </button>
         <button
           title="Remove Task"
-          @click="removeTask(task)"
+          @click="removeTask()"
         >
           <FontAwesomeIcon icon="trash-alt" />
         </button>
       </div>
     </div>
     <div
-      v-if="task.editing"
+      v-if="isEditing"
       class="task-list-container__item"
     >
       <div class="task-list-container__item-title">
         <label class="task-list-container__item-checkbox">
           <input
-            v-model="task.done"
+            :checked="task.done"
             title="Mask as DONE"
             type="checkbox"
+            @change="toggleDone"
           >
           <span class="task-list-container__item-checkmark" />
         </label>
         <input
           ref="task"
-          v-model="task.name"
+          v-model="localName"
           type="text"
           @keyup.enter="confirm"
         >
@@ -72,17 +74,16 @@ export default {
     task: {
       type: Object as PropType<ITask>,
       required: true
-
     }
   },
   emits: [
     'remove-task',
-    'edit-task',
-    'save-edition'
+    'update-task'
   ],
   data () {
     return {
-      editing: false
+      isEditing: false,
+      localName: this.task.name
     }
   },
   computed: {
@@ -91,17 +92,24 @@ export default {
     }
   },
   methods: {
-    removeTask (task: ITask) {
-      this.$emit('remove-task', task)
+    toggleDone () {
+      this.$emit('update-task', { ...this.task, done: !this.task.done })
     },
-    editTask (task: ITask) {
-      this.$emit('edit-task', task)
-      this.$nextTick(() => this.$refs.task.focus())
+    removeTask () {
+      this.$emit('remove-task', this.task)
     },
-    confirm (task: ITask) {
-      if (task !== '') {
-        this.task.editing = false
-        this.$emit('save-edition', task.name)
+    editTask () {
+      this.isEditing = true
+      this.localName = this.task.name
+      this.$nextTick(() => {
+        const input = this.$refs.task as HTMLInputElement
+        input?.focus()
+      })
+    },
+    confirm() {
+      if (this.localName.trim() !== '') {
+        this.$emit('update-task', { ...this.task, name: this.localName });
+        this.isEditing = false;
       }
     }
   }
@@ -179,7 +187,7 @@ export default {
             transform: rotate(45deg);
           }
         }
-        input:checked ~ .checkmark {
+        input:checked ~ .task-list-container__item-checkmark {
           background-color: colors.$color-primary;
           &:after {
             display: block;

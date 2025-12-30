@@ -22,12 +22,11 @@
       class="overflow"
     >
       <TaskItem
-        v-for="(task, index) in list"
-        :key="index"
+        v-for="task in list"
+        :key="task.id"
         :task="task"
-        @edit-task="editTask"
+        @update-task="updateTask"
         @remove-task="removeTask"
-        @save-edition="saveInCache"
       />
     </ul>
 
@@ -39,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { ITask } from '@/types'
+import type { ITask } from '@/types'
 import TodoHeader from '@/components/TodoHeader.vue'
 import CleanTasks from '@/components/CleanTasks.vue'
 import TaskInput from '@/components/TaskInput.vue'
@@ -54,7 +53,7 @@ export default {
   },
   data () {
     return {
-      list: [] as ITask
+      list: [] as ITask[]
     }
   },
   computed: {
@@ -79,21 +78,22 @@ export default {
   methods: {
     addTask (task: string) {
       this.list.push({
+        id: Date.now(),
         name: task,
         done: false,
-        editing: false
       })
       this.saveInCache()
     },
     removeTask (task: ITask) {
-      const index = this.list.indexOf(task)
-      this.list.splice(index, 1)
+      this.list = this.list.filter(t => t !== task)
       this.saveInCache()
     },
-    editTask (task: ITask) {
-      const index = this.list.indexOf(task)
-      this.list.forEach((item: ITask) => (item.editing = false))
-      this.list[index].editing = true
+    updateTask (task: ITask) {
+      const index = this.list.findIndex(t => t.id === task.id);
+      if (index !== -1) {
+        this.list.splice(index, 1, task);
+        this.saveInCache();
+      }
     },
     removeAll () {
       const confirmed = confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')
