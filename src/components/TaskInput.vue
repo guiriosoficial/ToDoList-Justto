@@ -5,9 +5,10 @@
       placeholder="Insert a new task here"
       autofocus
       @keyup.enter="addTask"
+      class="task-input-container__input"
     >
     <button
-      class="btn-icon"
+      class="task-input-container__button"
       title="Add Task"
       @click="addTask"
     >
@@ -49,7 +50,10 @@ export default {
   &:hover {
     background-color: colors.$color-grey-hover;
   }
-  input, button {
+  .task-input-container__input,
+  .task-input-container__button {
+    display: flex;
+    align-items: center;
     height: 60px;
     padding: 20px 0;
     font-size: 20px;

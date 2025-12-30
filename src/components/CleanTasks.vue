@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="number > 0"
-    class="rmv-all"
+    class="remove-all-button"
     title="Clear List"
     @click="removeAll"
   >
@@ -29,7 +29,7 @@ export default {
 <style scoped lang="scss">
 @use "../assets/colors";
 
-.rmv-all {
+.remove-all-button {
   position: absolute;
   left: 50%;
   top: 100%;

@@ -1,18 +1,18 @@
 <template>
-  <li class="list-item-container">
+  <li class="task-list-container">
     <div
       v-if="!task.editing"
       :class="classDone"
-      class="list-item"
+      class="task-list-container__item"
     >
-      <div class="item-title">
-        <label class="checkbox">
+      <div class="task-list-container__item-title">
+        <label class="task-list-container__item-checkbox">
           <input
             v-model="task.done"
             title="Mark as DONE"
             type="checkbox"
           >
-          <span class="checkmark" />
+          <span class="task-list-container__item-checkmark" />
         </label>
         <span :class="classDone">
           {{ task.name }}
@@ -35,16 +35,16 @@
     </div>
     <div
       v-if="task.editing"
-      class="list-item"
+      class="task-list-container__item"
     >
-      <div class="item-title">
-        <label class="checkbox">
+      <div class="task-list-container__item-title">
+        <label class="task-list-container__item-checkbox">
           <input
             v-model="task.done"
             title="Mask as DONE"
             type="checkbox"
           >
-          <span class="checkmark" />
+          <span class="task-list-container__item-checkmark" />
         </label>
         <input
           ref="task"
@@ -115,9 +115,9 @@ export default {
   text-decoration: line-through;
   background-color: colors.$color-grey-hover !important;
 }
-.list-item-container {
+.task-list-container {
   display: flex;
-  .list-item {
+  .task-list-container__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -130,7 +130,7 @@ export default {
     background-color: colors.$color-grey-light;
     color: colors.$color-text-primary;
     font-size: 18px;
-    .item-title {
+    .task-list-container__item-title {
       display: flex;
       width: 100%;
       max-width: 100%;
@@ -143,7 +143,7 @@ export default {
         padding: 16px 0;
         font-size: 18px;
       }
-      .checkbox {
+      .task-list-container__item-checkbox {
         display: block;
         position: relative;
         user-select: none;
@@ -158,7 +158,7 @@ export default {
           width: 0;
           cursor: pointer;
         }
-        .checkmark {
+        .task-list-container__item-checkmark {
           position: absolute;
           top: 0;
           left: 0;
@@ -191,7 +191,7 @@ export default {
       background-color: colors.$color-grey-hover;
     }
   }
-  &:nth-child(even) .list-item {
+  &:nth-child(even) .task-list-container__item {
     background-color: colors.$color-grey-dark;
     &:hover {
       background-color: colors.$color-grey-hover;

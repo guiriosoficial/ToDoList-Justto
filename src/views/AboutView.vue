@@ -8,14 +8,14 @@
       <p><b>Note:</b> Yes, I got the job :D.</p>
       <RouterLink
         to="/"
-        class="link"
+        class="about-container__link"
       >
         <FontAwesomeIcon icon="arrow-left" />
         <span>
           <b>Back</b>
         </span>
       </RouterLink>
-      <span class="credits">
+      <span class="about-container__credits">
         Made with &hearts; by
         <a
           href="http://github.com/guiriosoficial"
@@ -58,7 +58,7 @@ export default {
       margin-top: 8px;
     }
   }
-  .link {
+  .about-container__link {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -66,7 +66,7 @@ export default {
     font-size: 18px;
     color: colors.$color-primary;
   }
-  .credits {
+  .about-container__credits {
     transform: translateX(-50%);
     position: absolute;
     bottom: 20px;

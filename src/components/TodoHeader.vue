@@ -1,8 +1,8 @@
 <template>
-  <header class="header">
-    <div class="logo">
-      <h1>TODO List</h1>
-      <div class="details">
+  <header class="header-container">
+    <div>
+      <h1 class="header-container__logo">TODO List</h1>
+      <div class="header-container__details">
         <span>Total: {{ counter.total }} &nbsp;</span>
         <span>Done: {{ counter.done }} &nbsp;</span>
         <span>Left: {{ counter.doing }} &nbsp;</span>
@@ -10,7 +10,7 @@
     </div>
     <RouterLink
       :to="link"
-      class="nav"
+      class="header-container__link"
     >
       {{ title }}
     </RouterLink>
@@ -44,7 +44,7 @@ export default {
 <style scoped lang="scss">
 @use "../assets/colors";
 
-.header {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,15 +53,15 @@ export default {
   padding: 0 20px;
   font-weight: bold;
   background-color: colors.$color-primary;
-  .logo h1 {
+  .header-container__logo {
     font-size: 24px;
     color: colors.$color-white;
   }
-  .details {
+  .header-container__details {
     font-size: 14px;
     color: colors.$color-white;
   }
-  .nav {
+  .header-container__link {
     font-size: 16px;
     color: colors.$color-white;
     background-color: colors.$color-primary-dark;
