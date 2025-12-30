@@ -10,16 +10,21 @@ The challenge is to create a **TODO List** that meets the following requirements
 
 ## Project Setup
 - **Install Dependencies:**
-```
+```shell
 npm install
 ```
 - **Start Development Server:**
-```
+```shell
 npm run dev
 ```
 - **Compiles For Production:**
-```
+```shell
 npm run build
+```
+- **Check and Fix Lint**
+```shell
+npm run lint
+npm run lint:fix
 ```
 
 ## Update
