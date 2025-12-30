@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TodoHeader from '@/components/TodoHeader.vue'
 
 export default {

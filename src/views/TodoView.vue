@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TodoHeader from '@/components/TodoHeader.vue'
 import CleanTasks from '@/components/CleanTasks.vue'
 import TaskInput from '@/components/TaskInput.vue'
