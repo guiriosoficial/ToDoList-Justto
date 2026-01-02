@@ -1,62 +1,57 @@
 <template>
-  <li class="task-list-container">
-    <div
-      v-if="!isEditing"
-      :class="classDone"
-      class="task-list-container__item"
-    >
-      <div class="task-list-container__item-title">
-        <label class="task-list-container__item-checkbox">
-          <input
-            :checked="task.done"
-            title="Mark as DONE"
-            type="checkbox"
-            @change="handleToggleDone"
-          >
-          <span class="task-list-container__item-checkmark" />
-        </label>
-        <span :class="classDone">
-          {{ task.name }}
-        </span>
-      </div>
-      <div class="task-list-container__item-actions">
-        <button
-          title="Edit Task"
-          @click="handleEditTask()"
+  <li
+    :class="{ 'task-item-container--done': task.done }"
+    class="task-item-container"
+  >
+    <div class="task-item-container__head">
+      <label class="task-item-container__head-checkbox">
+        <input
+          :checked="task.done"
+          :title="checkboxTitle"
+          class="task-item-container__head-checkbox-input"
+          type="checkbox"
+          @change="handleToggleDone"
         >
-          <FontAwesomeIcon icon="edit" />
-        </button>
-        <button
-          title="Remove Task"
-          @click="handleRemoveTask"
-        >
-          <FontAwesomeIcon icon="trash-alt" />
-        </button>
-      </div>
+        <span class="task-item-container__head-checkmark" />
+      </label>
+      <span
+        v-if="!isEditing"
+        class="task-item-container__head-title"
+      >
+        {{ task.name }}
+      </span>
+      <input
+        v-else
+        ref="task"
+        v-model="localName"
+        type="text"
+        class="task-item-container__head-input"
+        @keyup.enter="handleConfirmEdition"
+        @keyup.esc="handleCancelEdition"
+        @blur="handleCancelEdition"
+      >
     </div>
     <div
-      v-if="isEditing"
-      class="task-list-container__item"
+      v-if="!isEditing"
+      class="task-item-container__actions"
     >
-      <div class="task-list-container__item-title">
-        <label class="task-list-container__item-checkbox">
-          <input
-            :checked="task.done"
-            title="Mask as DONE"
-            type="checkbox"
-            @change="handleToggleDone"
-          >
-          <span class="task-list-container__item-checkmark" />
-        </label>
-        <input
-          ref="task"
-          v-model="localName"
-          type="text"
-          @keyup.enter="handleConfirmEdition"
-          @keyup.esc="handleCancelEdition"
-          @blur="handleCancelEdition"
-        >
-      </div>
+      <button
+        title="Edit Task"
+        @click="handleEditTask()"
+      >
+        <FontAwesomeIcon icon="edit" />
+      </button>
+      <button
+        title="Remove Task"
+        @click="handleRemoveTask"
+      >
+        <FontAwesomeIcon icon="trash-alt" />
+      </button>
+    </div>
+    <div
+      v-else
+      class="task-item-container__actions"
+    >
       <button
         title="Confirm Edition"
         @click="handleConfirmEdition"
@@ -99,8 +94,8 @@ export default {
     }
   },
   computed: {
-    classDone() {
-      return this.task.done ? 'task-done' : ''
+    checkboxTitle() {
+      return this.task.done ? 'Mark as UNDONE' : 'Mark as DONE'
     }
   },
   watch: {
@@ -140,96 +135,87 @@ export default {
 <style scoped lang="scss">
 @use "../assets/colors";
 
-.task-done {
-  text-decoration: line-through;
-  background-color: colors.$color-grey-hover !important;
-}
-.task-list-container {
+.task-item-container {
   display: flex;
-  .task-list-container__item {
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2px;
+  width: 100%;
+  max-width: 100%;
+  height: 56px;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  background-color: colors.$color-grey-light;
+  color: colors.$color-text-primary;
+  font-size: 18px;
+  .task-item-container__head {
     display: flex;
+    flex: 1;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 2px;
-    width: 100%;
-    max-width: 100%;
-    height: 56px;
-    padding: 0 20px;
-    margin-bottom: 12px;
-    background-color: colors.$color-grey-light;
-    color: colors.$color-text-primary;
-    font-size: 18px;
-    .task-list-container__item-title {
-      display: flex;
-      width: 100%;
-      max-width: 100%;
-      align-items: center;
-      span {
-        text-overflow: ellipsis;
+    .task-item-container__head-title {
+      text-overflow: ellipsis;
+    }
+    .task-item-container__head-input {
+      padding: 16px 0;
+      font-size: 18px;
+    }
+    .task-item-container__head-checkbox {
+      display: block;
+      position: relative;
+      user-select: none;
+      height: 20px;
+      width: 20px;
+      margin-right: 8px;
+      cursor: pointer;
+      .task-item-container__head-checkbox-input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        cursor: pointer;
       }
-      input, button {
-        height: 50px;
-        padding: 16px 0;
-        font-size: 18px;
-      }
-      .task-list-container__item-checkbox {
-        display: block;
-        position: relative;
-        user-select: none;
+      .task-item-container__head-checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
         height: 20px;
         width: 20px;
-        margin-right: 8px;
-        cursor: pointer;
-        input[type="checkbox"] {
+        border-radius: 2px;
+        background-color: colors.$color-text-secondary;
+        &:after {
+          content: "";
           position: absolute;
-          opacity: 0;
-          height: 0;
-          width: 0;
-          cursor: pointer;
+          display: none;
+          left: 6px;
+          top: 2px;
+          width: 5px;
+          height: 9px;
+          border: solid colors.$color-white;
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
         }
-        .task-list-container__item-checkmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 20px;
-          width: 20px;
-          border-radius: 2px;
-          background-color: colors.$color-text-secondary;
-          &:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 6px;
-            top: 2px;
-            width: 5px;
-            height: 9px;
-            border: solid colors.$color-white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
-          }
-        }
-        input:checked ~ .task-list-container__item-checkmark {
-          background-color: colors.$color-primary;
-          &:after {
-            display: block;
-          }
+      }
+      .task-item-container__head-checkbox-input:checked ~ .task-item-container__head-checkmark {
+        background-color: colors.$color-primary;
+        &:after {
+          display: block;
         }
       }
     }
-    .task-list-container__item-actions {
-      display: flex;
-      align-items: center;
-      min-width: 64px;
-    }
-    &:hover {
-      background-color: colors.$color-grey-hover;
-    }
   }
-  &:nth-child(even) .task-list-container__item {
+  &--done {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  .task-item-container__actions {
+    display: flex;
+    align-items: center;
+  }
+  &:nth-child(even) {
     background-color: colors.$color-grey-dark;
-    &:hover {
-      background-color: colors.$color-grey-hover;
-    }
+  }
+  &:hover {
+    background-color: colors.$color-grey-hover;
   }
 }
 </style>

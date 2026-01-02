@@ -1,30 +1,28 @@
 <template>
-  <div>
-    <TodoHeader title="BACK" />
-    <div class="about-container">
-      <p>I'm Guilherme Rios, 21 years old, and it was my challenge for an internship job at Justto, my first application on Vue.js.</p>
-      <p>The challenge is create a <b>TODO List</b> using Vue.js with Webpack, where the user can insert, edit and remove tasks from list.</p>
-      <p>Create an "About" page using vue-router was the proposed bonus for the challenge.</p>
-      <p><b>Note:</b> Yes, I got the job :D.</p>
-      <RouterLink
-        to="/"
-        class="about-container__link"
-      >
-        <FontAwesomeIcon icon="arrow-left" />
-        <span>
-          <b>Back</b>
-        </span>
-      </RouterLink>
-      <span class="about-container__credits">
-        Made with &hearts; by
-        <a
-          href="http://github.com/guiriosoficial"
-          target="_blank"
-        >
-          guiriosoficial
-        </a>
+  <TodoHeader title="BACK" />
+  <div class="about-container">
+    <p>I'm Guilherme Rios, 21 years old, and it was my challenge for an internship job at Justto, my first application on Vue.js.</p>
+    <p>The challenge is create a <b>TODO List</b> using Vue.js with Webpack, where the user can insert, edit and remove tasks from list.</p>
+    <p>Create an "About" page using vue-router was the proposed bonus for the challenge.</p>
+    <p><b>Note:</b> Yes, I got the job :D.</p>
+    <RouterLink
+      to="/"
+      class="about-container__link"
+    >
+      <FontAwesomeIcon icon="arrow-left" />
+      <span>
+        <b>Back</b>
       </span>
-    </div>
+    </RouterLink>
+    <span class="about-container__credits">
+      Made with &hearts; by
+      <a
+        href="http://github.com/guiriosoficial"
+        target="_blank"
+      >
+        guiriosoficial
+      </a>
+    </span>
   </div>
 </template>
 

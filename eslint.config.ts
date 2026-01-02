@@ -1,7 +1,7 @@
-import eslint from '@eslint/js';
-import eslintPluginVue from 'eslint-plugin-vue';
-import globals from 'globals';
-import typescriptEslint from 'typescript-eslint';
+import eslint from '@eslint/js'
+import eslintPluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
+import typescriptEslint from 'typescript-eslint'
 
 export default typescriptEslint.config(
   { ignores: ['*.d.ts', '**/coverage', '**/dist'] },
@@ -9,7 +9,7 @@ export default typescriptEslint.config(
     extends: [
       eslint.configs.recommended,
       ...typescriptEslint.configs.recommended,
-      ...eslintPluginVue.configs['flat/recommended'],
+      ...eslintPluginVue.configs['flat/recommended']
     ],
     files: ['**/*.{ts,vue}'],
     languageOptions: {
@@ -17,8 +17,8 @@ export default typescriptEslint.config(
       sourceType: 'module',
       globals: globals.browser,
       parserOptions: {
-        parser: typescriptEslint.parser,
-      },
-    },
-  },
-);
+        parser: typescriptEslint.parser
+      }
+    }
+  }
+)

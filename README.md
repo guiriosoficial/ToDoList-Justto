@@ -32,7 +32,6 @@ To maintain this project update, I migrated from Vue 2 to Vue 3, Webpack to Vite
 
 ## TODO
 - Implements Tests
-- Review Classes Names
-- Review Duplicated Code in TaskItem.vue
+- Adjust Console Errors
 
 > **Note:** Yes, I got the job :D.

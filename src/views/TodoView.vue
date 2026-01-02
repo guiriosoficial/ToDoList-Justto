@@ -1,42 +1,40 @@
 <template>
-  <div>
-    <TodoHeader
-      :counter="doingDone"
-      title="ABOUT"
+  <TodoHeader
+    :counter="doingDone"
+    title="ABOUT"
+  />
+  <TaskInput @create-task="handleCreateTask" />
+
+  <div
+    v-if="!list.length"
+    class="todo_view-container__empty-state"
+  >
+    <FontAwesomeIcon
+      class="todo_view-container__empty-state-icon"
+      icon="calendar-times"
     />
-    <TaskInput @create-task="handleCreateTask" />
-
-    <div
-      v-if="!list.length"
-      class="empty"
-    >
-      <FontAwesomeIcon
-        class="empty-icon"
-        icon="calendar-times"
-      />
-      <p>No tasks Here!</p>
-    </div>
-
-    <ul
-      v-else
-      class="overflow"
-    >
-      <TaskItem
-        v-for="task in list"
-        :key="task.id"
-        :task="task"
-        :is-editing="editingTaskId === task.id"
-        @update-task="handleUpdateTask"
-        @remove-task="handleRemoveTask"
-        @edit-task="handleStartEdit"
-      />
-    </ul>
-
-    <CleanTasks
-      :number="list.length"
-      @remove-all="handleRemoveAll"
-    />
+    <p>No tasks Here!</p>
   </div>
+
+  <ul
+    v-else
+    class="todo_view-container__task-list"
+  >
+    <TaskItem
+      v-for="task in list"
+      :key="task.id"
+      :task="task"
+      :is-editing="editingTaskId === task.id"
+      @update-task="handleUpdateTask"
+      @remove-task="handleRemoveTask"
+      @edit-task="handleStartEdit"
+    />
+  </ul>
+
+  <CleanTasks
+    :number="list.length"
+    @remove-all="handleRemoveAll"
+  />
 </template>
 
 <script lang="ts">
@@ -120,7 +118,7 @@ export default {
 <style scoped lang="scss">
 @use "../assets/colors";
 
-.empty {
+.todo_view-container__empty-state {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,11 +127,11 @@ export default {
   color: colors.$color-text-primary;
   font-size: 20px;
   gap: 16px;
-  .empty-icon {
+  .todo_view-container__empty-state-icon {
     font-size: 48px;
   }
 }
-.overflow {
+.todo_view-container__task-list {
   height: calc(100vh - 130px);
   overflow-y: auto;
   padding: 12px 12px 0;
