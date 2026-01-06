@@ -1,4 +1,4 @@
-# ToDoList ![Justto 3DR](https://raw.githubusercontent.com/guiriosoficial/ToDoList-Justto/refs/heads/master/public/justto-logo.svg)
+# ToDoList ![Justto 3DR](https://raw.githubusercontent.com/guiriosoficial/ToDoList-Justto/refs/heads/main/public/justto-logo.svg)
 This project was my challenge for an internship job at Justto, my first application on Vue.js.
 Justto 3DR is the only data-based dispute resolution platform for law firms and legal departments!
 
