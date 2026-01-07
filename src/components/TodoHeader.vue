@@ -14,33 +14,36 @@
       :to="link"
       class="header-container__link"
     >
-      {{ title }}
+      {{ route.meta.headerButtonTitle }}
     </RouterLink>
   </header>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    title: {
-      type: String,
-      default: 'ABOUT'
-    },
-    counter: {
-      type: Object,
-      default: () => ({
-        doing: 0,
-        done: 0,
-        total: 0
-      })
-    }
-  },
-  computed: {
-    link() {
-      return this.title === 'ABOUT' ? '/about' : '/'
-    }
-  }
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+export interface ICounter {
+  doing: number,
+  done: number,
+  total: number
 }
+
+interface ITodoHeaderProps {
+  counter?: ICounter
+}
+
+const route = useRoute()
+
+const {
+  counter = {
+    doing: 0,
+    done: 0,
+    total: 0
+  }
+} = defineProps<ITodoHeaderProps>()
+
+const link = computed(() => route.meta.headerButtonTitle === 'ABOUT' ? '/about' : '/')
 </script>
 
 <style scoped lang="scss">

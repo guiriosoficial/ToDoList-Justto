@@ -17,22 +17,23 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  emits: ['create-task'],
-  data() {
-    return {
-      taskName: ''
-    }
-  },
-  methods: {
-    handleCreateTask() {
-      if (this.taskName !== '') {
-        this.$emit('create-task', this.taskName)
-        this.taskName = ''
-      }
-    }
-  }
+<script setup lang="ts">
+import { ref } from 'vue'
+
+interface ITaskInputEmits {
+  (e: 'create-task', taskName: string): void
+}
+
+const taskName = ref('')
+
+const emit = defineEmits<ITaskInputEmits>()
+
+function handleCreateTask() {
+  if (!taskName.value.trim()) return
+
+  emit('create-task', taskName.value)
+  taskName.value = ''
+
 }
 </script>
 

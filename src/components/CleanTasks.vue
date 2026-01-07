@@ -9,20 +9,21 @@
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    number: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: ['remove-all'],
-  methods: {
-    handleRemoveAll() {
-      this.$emit('remove-all')
-    }
-  }
+<script setup lang="ts">
+interface ICleanTasksProps {
+  number?: number
+}
+
+interface ICleanTasksEmits {
+  (e: 'remove-all'): void
+}
+
+const { number = 0 } = defineProps<ICleanTasksProps>()
+
+const emit = defineEmits<ICleanTasksEmits>()
+
+function handleRemoveAll() {
+  emit('remove-all')
 }
 </script>
 

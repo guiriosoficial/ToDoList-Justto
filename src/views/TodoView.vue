@@ -1,8 +1,4 @@
 <template>
-  <TodoHeader
-    :counter="doingDone"
-    title="ABOUT"
-  />
   <TaskInput @create-task="handleCreateTask" />
 
   <div
@@ -37,81 +33,84 @@
   />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { ITask } from '@/types'
-import TodoHeader from '@/components/TodoHeader.vue'
 import CleanTasks from '@/components/CleanTasks.vue'
 import TaskInput from '@/components/TaskInput.vue'
 import TaskItem from '@/components/TaskItem.vue'
+import { ref, onBeforeMount, watch } from 'vue'
+import type { ICounter } from '@/components/TodoHeader.vue'
 
-export default {
-  components: {
-    TodoHeader,
-    CleanTasks,
-    TaskInput,
-    TaskItem
-  },
-  data() {
-    return {
-      list: [] as ITask[],
-      editingTaskId: null as number | null
-    }
-  },
-  computed: {
-    doingDone() {
-      return {
-        doing: this.list.filter((item: ITask) => !item.done).length,
-        done: this.list.filter((item: ITask) => item.done).length,
-        total: this.list.length
-      }
-    }
-  },
-  beforeMount() {
-    if (localStorage.getItem('jus-todo')) {
-      try {
-        const localItems = localStorage.getItem('jus-todo') ?? ''
-        this.list = JSON.parse(localItems)
-      } catch {
-        localStorage.removeItem('jus-todo')
-      }
-    }
-  },
-  methods: {
-    handleCreateTask(task: string) {
-      this.list.push({
-        id: Date.now(),
-        name: task,
-        done: false,
-      })
-      this.saveInCache()
-    },
-    handleStartEdit(taskId: number) {
-      this.editingTaskId = taskId
-    },
-    handleRemoveTask(task: ITask) {
-      this.list = this.list.filter(t => t !== task)
-      this.saveInCache()
-    },
-    handleUpdateTask(task: ITask) {
-      const index = this.list.findIndex(t => t.id === task.id);
-      if (index !== -1) {
-        this.list.splice(index, 1, task);
-        this.saveInCache();
-      }
-    },
-    handleRemoveAll() {
-      const confirmed = confirm('Are you sure you want to remove all ' + this.list.length + ' tasks from list?\nThis action cannot be undone.')
+interface ITodoViewEmits {
+  (e: 'update-counter', counter: ICounter): void
+}
 
-      if (confirmed) {
-        this.list = []
-        this.saveInCache()
-      }
-    },
-    saveInCache() {
-      const parsed = JSON.stringify(this.list)
-      localStorage.setItem('jus-todo', parsed)
-    }
+const list = ref<ITask[]>([])
+const editingTaskId = ref<number | null>(null)
+
+const emit = defineEmits<ITodoViewEmits>()
+
+watch(() => list.value, (newValue) => {
+  const total = newValue?.length ?? 0
+  const done = newValue?.filter((item: ITask) => item.done).length ?? 0
+  const doing = total - done
+  const counters = { total, done, doing }
+
+  emit('update-counter', counters)
+}, { deep: true })
+
+onBeforeMount(() => {
+  const storageItems = localStorage.getItem('jus-todo')
+
+  if (!storageItems) return
+
+  try {
+    list.value = JSON.parse(storageItems ?? '')
+  } catch {
+    localStorage.removeItem('jus-todo')
   }
+})
+
+function handleCreateTask(task: string) {
+  list.value.push({
+    id: Date.now(),
+    name: task,
+    done: false,
+  })
+
+  saveInStorage()
+}
+
+function handleStartEdit(taskId: number | null) {
+  editingTaskId.value = taskId
+}
+
+function handleRemoveTask(task: ITask) {
+  list.value = list.value.filter((t) => t !== task)
+  saveInStorage()
+}
+
+function handleUpdateTask(task: ITask) {
+  const index = list.value.findIndex((t) => t.id === task.id);
+
+  if (index === -1) return
+
+  list.value[index] = { ...task };
+  saveInStorage();
+}
+
+function handleRemoveAll() {
+  const confirmed = confirm('Are you sure you want to remove all ' + list.value.length + ' tasks from list?\nThis action cannot be undone.')
+
+  if (confirmed) {
+    list.value = []
+    saveInStorage()
+  }
+}
+
+function saveInStorage() {
+  const parsed = JSON.stringify(list.value)
+  localStorage.setItem('jus-todo', parsed)
 }
 </script>
 

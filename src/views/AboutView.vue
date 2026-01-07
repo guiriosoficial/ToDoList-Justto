@@ -1,5 +1,4 @@
 <template>
-  <TodoHeader title="BACK" />
   <div class="about-container">
     <p>I'm Guilherme Rios, 21 years old, and it was my challenge for an internship job at Justto, my first application on Vue.js.</p>
     <p>The challenge is create a <b>TODO List</b> using Vue.js with Webpack, where the user can insert, edit and remove tasks from list.</p>
@@ -25,16 +24,6 @@
     </span>
   </div>
 </template>
-
-<script lang="ts">
-import TodoHeader from '@/components/TodoHeader.vue'
-
-export default {
-  components: {
-    TodoHeader
-  }
-}
-</script>
 
 <style scoped lang="scss">
 @use "../assets/colors";

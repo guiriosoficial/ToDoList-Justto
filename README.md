@@ -28,7 +28,7 @@ npm run lint:fix
 ```
 
 ## Update
-To maintain this project update, I migrated from Vue 2 to Vue 3, Webpack to Vite and JavaScript to TypeScript
+To maintain this project update, I migrated from Vue 2 to Vue 3, Options API to Composition API, Webpack to Vite and JavaScript to TypeScript
 
 ## TODO
 - Create Tests

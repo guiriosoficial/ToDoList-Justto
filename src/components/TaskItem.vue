@@ -22,7 +22,7 @@
       </span>
       <input
         v-else
-        ref="task"
+        ref="taskInput"
         v-model="localName"
         type="text"
         class="task-item-container__head-input"
@@ -68,68 +68,66 @@
   </li>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { computed, ref, watch, nextTick } from 'vue'
 import type { ITask } from '@/types'
-import type { PropType } from 'vue'
 
-export default {
-  props: {
-    task: {
-      type: Object as PropType<ITask>,
-      required: true
-    },
-    isEditing: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: [
-    'remove-task',
-    'update-task',
-    'edit-task'
-  ],
-  data() {
-    return {
-      localName: this.task.name
-    }
-  },
-  computed: {
-    checkboxTitle() {
-      return this.task.done ? 'Mark as UNDONE' : 'Mark as DONE'
-    }
-  },
-  watch: {
-    isEditing(newValue) {
-      if (!newValue) return
-
-      this.localName = this.task.name
-      this.$nextTick(() => {
-        const input = this.$refs.task as HTMLInputElement
-        input?.focus()
-      })
-    }
-  },
-  methods: {
-    handleToggleDone() {
-      this.$emit('update-task', { ...this.task, done: !this.task.done })
-    },
-    handleRemoveTask() {
-      this.$emit('remove-task', this.task)
-    },
-    handleEditTask() {
-      this.$emit('edit-task', this.task.id)
-    },
-    handleConfirmEdition() {
-      if (this.localName.trim() == '') return
-
-      this.$emit('update-task', { ...this.task, name: this.localName });
-      this.$emit('edit-task', null);
-    },
-    handleCancelEdition() {
-      this.$emit('edit-task', null);
-    }
-  }
+interface ITaskItemProps {
+  task: ITask,
+  isEditing?: boolean
 }
+
+interface ITaskItemEmits {
+  (e: 'update-task', task: ITask): void,
+  (e: 'remove-task', task: ITask): void,
+  (e: 'edit-task', taskId: number | null): void
+}
+
+const {
+  task,
+  isEditing = false
+} = defineProps<ITaskItemProps>()
+
+const emit = defineEmits<ITaskItemEmits>()
+
+const localName = ref(task.name)
+const taskInput = ref<HTMLInputElement | null>(null)
+
+const checkboxTitle = computed(() => task.done ? 'Mark as UNDONE' : 'Mark as DONE')
+
+watch(() => isEditing, (newValue) => {
+  if (!newValue) return
+
+  localName.value = task.name
+
+  nextTick(() => {
+    taskInput.value?.focus()
+  })
+})
+
+function handleToggleDone() {
+  emit('update-task', { ...task, done: !task.done })
+}
+
+function handleRemoveTask() {
+  emit('remove-task', task)
+}
+
+function handleEditTask() {
+  emit('edit-task', task.id)
+}
+
+function handleConfirmEdition() {
+  if (!localName.value.trim()) return
+
+  emit('update-task', { ...task, name: localName.value });
+  emit('edit-task', null);
+}
+
+function handleCancelEdition() {
+  emit('edit-task', null);
+}
+
 </script>
 
 <style scoped lang="scss">
