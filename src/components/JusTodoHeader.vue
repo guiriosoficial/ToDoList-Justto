@@ -14,19 +14,23 @@
         <li>Left: {{ counter.doing }}</li>
       </ul>
     </div>
-    <RouterLink
-      :to="{ name: route.meta.headerButtonLink }"
-      :aria-label="`Go to ${route.meta.headerButtonTitle} page`"
-      class="header-container__link"
-    >
-      {{ route.meta.headerButtonTitle }}
-    </RouterLink>
+    <div class="header-container__actions">
+      <JusToggleTheme />
+      <RouterLink
+        :to="{ name: route.meta.headerButtonLink }"
+        :aria-label="`Go to ${route.meta.headerButtonTitle} page`"
+        class="header-container__link"
+      >
+        {{ route.meta.headerButtonTitle }}
+      </RouterLink>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import type { ICounter } from '@/models/counter'
+import JusToggleTheme from "@/components/JusToggleTheme.vue";
 
 interface ITodoHeaderProps {
   counter?: ICounter
@@ -63,15 +67,22 @@ const {
     font-size: 14px;
     color: var(--brand-on-primary);
   }
-  .header-container__link {
-    font-size: 16px;
-    color: var(--brand-on-primary);
-    background-color: var(--brand-primary-dark);
-    border-radius: 2px;
-    padding: 8px 14px;
-    transition: .5s ease;
-    &:hover {
-      background-color: var(--brand-primary-light);
+  .header-container__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .header-container__link {
+      font-size: 16px;
+      color: var(--brand-on-primary);
+      background-color: var(--brand-primary-dark);
+      border-radius: 2px;
+      padding: 8px 14px;
+      transition: .5s ease;
+      min-width: 88px;
+      text-align: center;
+      &:hover {
+        background-color: var(--brand-primary-light);
+      }
     }
   }
 }
