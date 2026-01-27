@@ -35,7 +35,7 @@ function handleRemoveAll() {
   left: 50%;
   top: 100%;
   transform: translate(-50%, -38%);
-  background-color: colors.$color-text-primary;
+  background-color: var(--foreground-primary);
   border-radius: 50%;
   padding: 8px;
   margin: 0;
@@ -44,13 +44,12 @@ function handleRemoveAll() {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  color: colors.$color-white;
+  color: var(--surface-base);
   font-size: 24px;
   transition: 0.1s ease-in-out;
+  cursor: pointer;
   &:hover {
     transform: translate(-50%, -50%);
-    color: colors.$color-white;
-    cursor: pointer;
   }
 }
 </style>

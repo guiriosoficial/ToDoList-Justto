@@ -131,8 +131,6 @@ function handleCancelEdition() {
 </script>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
 .task-item-container {
   display: flex;
   align-items: center;
@@ -143,8 +141,8 @@ function handleCancelEdition() {
   height: 56px;
   padding: 0 20px;
   margin-bottom: 12px;
-  background-color: colors.$color-grey-light;
-  color: colors.$color-text-primary;
+  background-color: var(--surface-base);
+  color: var(--foreground-primary);
   font-size: 18px;
   .task-item-container__head {
     display: flex;
@@ -179,7 +177,7 @@ function handleCancelEdition() {
         height: 20px;
         width: 20px;
         border-radius: 2px;
-        background-color: colors.$color-text-secondary;
+        background-color: var(--foreground-secondary);
         &:after {
           content: "";
           position: absolute;
@@ -188,13 +186,13 @@ function handleCancelEdition() {
           top: 2px;
           width: 5px;
           height: 9px;
-          border: solid colors.$color-white;
+          border: solid var(--surface-border);
           border-width: 0 3px 3px 0;
           transform: rotate(45deg);
         }
       }
       .task-item-container__head-checkbox-input:checked ~ .task-item-container__head-checkmark {
-        background-color: colors.$color-primary;
+        background-color: var(--brand-primary);
         &:after {
           display: block;
         }
@@ -210,10 +208,10 @@ function handleCancelEdition() {
     align-items: center;
   }
   &:nth-child(even) {
-    background-color: colors.$color-grey-dark;
+    background-color: var(--surface-alt);
   }
   &:hover {
-    background-color: colors.$color-grey-hover;
+    background-color: var(--surface-hover);
   }
 }
 </style>

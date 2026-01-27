@@ -46,8 +46,6 @@ const {
 </script>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -56,26 +54,26 @@ const {
   width: 100%;
   padding: 0 20px;
   font-weight: bold;
-  background-color: colors.$color-primary;
+  background-color: var(--brand-primary);
   .header-container__logo {
     font-size: 24px;
-    color: colors.$color-white;
+    color: var(--brand-on-primary);
   }
   .header-container__details {
     display: flex;
     gap: 8px;
     font-size: 14px;
-    color: colors.$color-white;
+    color: var(--brand-on-primary);
   }
   .header-container__link {
     font-size: 16px;
-    color: colors.$color-white;
-    background-color: colors.$color-primary-dark;
+    color: var(--brand-on-primary);
+    background-color: var(--brand-primary-dark);
     border-radius: 2px;
     padding: 8px 14px;
     transition: .5s ease;
     &:hover {
-      background-color: colors.$color-primary-light;
+      background-color: var(--brand-primary-light);
     }
   }
 }

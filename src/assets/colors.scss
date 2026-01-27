@@ -1,15 +1,103 @@
 @use "sass:color";
 
-$color-white: #fafafa !default;
-$color-black: #000000 !default;
-$color-grey-light: color.mix(#dcdcdc, $color-white, 50%) !default;
-$color-grey-dark: color.mix(#d3d3d3, $color-white, 50%) !default;
-$color-grey-hover: color.mix(#c0c0c0, $color-white, 50%) !default;
+/* ======================================================
+   Brand (imutável – identidade visual)
+====================================================== */
+$brand-primary: #2993de;
+$brand-primary-light: color.scale($brand-primary, $lightness: +12%);
+$brand-primary-dark: color.scale($brand-primary, $lightness: -18%);
+$brand-on-primary: #ffffff;
 
-$color-primary: #1c75db !default;
-$color-primary-light: #2993de !default;
-$color-primary-dark: #0c609c !default;
+/* ======================================================
+   Neutral base
+====================================================== */
+$white: #fafafa;
+$black: #0f0f10;
 
-$color-text-primary: #48484a !default;
-$color-text-secondary: #68686b !default;
-$color-text-hover: #808080 !default;
+/* ======================================================
+   Light theme values
+====================================================== */
+$light-bg-page: $white;
+
+$light-surface-base: color.scale($white, $lightness: -3%);
+$light-surface-alt: color.scale($white, $lightness: -6%);
+$light-surface-hover: color.scale($white, $lightness: -9%);
+$light-surface-border: color.scale($white, $lightness: -15%);
+
+$light-fg-primary: #48484a;
+$light-fg-secondary: #68686b;
+$light-fg-muted: #808080;
+
+/* ======================================================
+   Dark theme values
+====================================================== */
+$dark-bg-page: $black;
+
+$dark-surface-base: color.scale($black, $lightness: +6%);
+$dark-surface-alt: color.scale($black, $lightness: +10%);
+$dark-surface-hover: color.scale($black, $lightness: +14%);
+$dark-surface-border: color.scale($black, $lightness: +22%);
+
+$dark-fg-primary: #f2f2f7;
+$dark-fg-secondary: #c7c7cc;
+$dark-fg-muted: #8e8e93;
+
+/* ======================================================
+   Dark theme mixin (reutilizável)
+====================================================== */
+@mixin theme-dark {
+  /* Background */
+  --background-page: #{$dark-bg-page};
+
+  /* Surfaces */
+  --surface-base: #{$dark-surface-base};
+  --surface-alt: #{$dark-surface-alt};
+  --surface-hover: #{$dark-surface-hover};
+  --surface-border: #{$dark-surface-border};
+
+  /* Foregrounds */
+  --foreground-primary: #{$dark-fg-primary};
+  --foreground-secondary: #{$dark-fg-secondary};
+  --foreground-muted: #{$dark-fg-muted};
+}
+
+/* ======================================================
+   CSS Tokens — Light (default)
+====================================================== */
+:root {
+  /* Brand */
+  --brand-primary: #{$brand-primary};
+  --brand-primary-light: #{$brand-primary-light};
+  --brand-primary-dark: #{$brand-primary-dark};
+  --brand-on-primary: #{$brand-on-primary};
+
+  /* Background */
+  --background-page: #{$light-bg-page};
+
+  /* Surfaces */
+  --surface-base: #{$light-surface-base};
+  --surface-alt: #{$light-surface-alt};
+  --surface-hover: #{$light-surface-hover};
+  --surface-border: #{$light-surface-border};
+
+  /* Foregrounds */
+  --foreground-primary: #{$light-fg-primary};
+  --foreground-secondary: #{$light-fg-secondary};
+  --foreground-muted: #{$light-fg-muted};
+}
+
+/* ======================================================
+   Dark theme — manual override
+====================================================== */
+[data-theme="dark"] {
+  @include theme-dark;
+}
+
+/* ======================================================
+   System preference — automatic fallback
+====================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include theme-dark;
+  }
+}

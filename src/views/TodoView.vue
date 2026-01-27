@@ -1,22 +1,13 @@
 <template>
-  <TaskInput @create-task="handleCreateTask" />
+  <JusTaskInput @create-task="handleCreateTask" />
 
-  <div
-    v-if="!list.length"
-    class="todo_view-container__empty-state"
-  >
-    <FontAwesomeIcon
-      class="todo_view-container__empty-state-icon"
-      icon="calendar-times"
-    />
-    <p>No tasks Here!</p>
-  </div>
+  <JusEmptyState v-if="!list.length" />
 
   <ul
     v-else
     class="todo_view-container__task-list"
   >
-    <TaskItem
+    <JusTaskItem
       v-for="task in list"
       :key="task.id"
       :task="task"
@@ -27,19 +18,23 @@
     />
   </ul>
 
-  <CleanTasks
-    :number="list.length"
-    @remove-all="handleRemoveAll"
+  <JusClearButton
+    v-if="list.length > 0"
+    @click="handleRemoveAll"
   />
 </template>
 
 <script setup lang="ts">
-import type { ITask } from '@/types'
-import CleanTasks from '@/components/CleanTasks.vue'
-import TaskInput from '@/components/TaskInput.vue'
-import TaskItem from '@/components/TaskItem.vue'
+import JusClearButton from '@/components/JusClearButton.vue'
+import JusTaskInput from '@/components/JusTaskInput.vue'
+import JusTaskItem from '@/components/JusTaskItem.vue'
+import JusEmptyState from "@/components/JusEmptyState.vue";
 import { ref, onBeforeMount, watch } from 'vue'
-import type { ICounter } from '@/components/TodoHeader.vue'
+import type { ICounter } from '@/models/counter'
+import type { ITask } from '@/models/task'
+
+// TODO: Put in global variables
+const LOCAL_STORAGE_KEY = 'jus-todo'
 
 interface ITodoViewEmits {
   (e: 'update-counter', counter: ICounter): void
@@ -60,14 +55,14 @@ watch(() => list.value, (newValue) => {
 }, { deep: true })
 
 onBeforeMount(() => {
-  const storageItems = localStorage.getItem('jus-todo')
+  const storageItems = localStorage.getItem(LOCAL_STORAGE_KEY)
 
   if (!storageItems) return
 
   try {
     list.value = JSON.parse(storageItems ?? '')
   } catch {
-    localStorage.removeItem('jus-todo')
+    localStorage.removeItem(LOCAL_STORAGE_KEY)
   }
 })
 
@@ -75,61 +70,39 @@ function handleCreateTask(task: string) {
   list.value.push({
     id: Date.now(),
     name: task,
-    done: false,
+    done: false
   })
-
-  saveInStorage()
 }
 
 function handleStartEdit(taskId: number | null) {
   editingTaskId.value = taskId
 }
 
-function handleRemoveTask(task: ITask) {
-  list.value = list.value.filter((t) => t !== task)
-  saveInStorage()
+function handleRemoveTask(taskId: number) {
+  list.value = list.value.filter((t) => t.id !== taskId)
 }
 
 function handleUpdateTask(task: ITask) {
-  const index = list.value.findIndex((t) => t.id === task.id);
+  const target = list.value.find((t) => t.id === task.id)
 
-  if (index === -1) return
-
-  list.value[index] = { ...task };
-  saveInStorage();
+  if (target) Object.assign(target, task)
 }
 
 function handleRemoveAll() {
   const confirmed = confirm('Are you sure you want to remove all ' + list.value.length + ' tasks from list?\nThis action cannot be undone.')
 
-  if (confirmed) {
-    list.value = []
-    saveInStorage()
-  }
+  if (confirmed) list.value = []
 }
 
 function saveInStorage() {
   const parsed = JSON.stringify(list.value)
-  localStorage.setItem('jus-todo', parsed)
+  localStorage.setItem(LOCAL_STORAGE_KEY, parsed)
 }
+
+watch(list, saveInStorage, { deep: true })
 </script>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
-.todo_view-container__empty-state {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: calc(100vh - 130px);
-  color: colors.$color-text-primary;
-  font-size: 20px;
-  gap: 16px;
-  .todo_view-container__empty-state-icon {
-    font-size: 48px;
-  }
-}
 .todo_view-container__task-list {
   height: calc(100vh - 130px);
   overflow-y: auto;
@@ -139,13 +112,13 @@ function saveInStorage() {
   width: 8px;
 }
 ::-webkit-scrollbar-track-piece {
-  background-color: colors.$color-grey-light;
+  background-color: var(--surface-base);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: colors.$color-primary-light;
+  background-color: var(--brand-primary-light);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: colors.$color-primary;
+  background-color: var(--brand-primary);
 }
 </style>

@@ -47,9 +47,9 @@ function handleCreateTask() {
   height: 60px;
   width: 100%;
   padding: 0 20px;
-  background-color: colors.$color-grey-dark;
+  background-color: var(--surface-alt);
   &:hover {
-    background-color: colors.$color-grey-hover;
+    background-color: var(--surface-hover);
   }
   .task-input-container__input,
   .task-input-container__button {
@@ -60,7 +60,7 @@ function handleCreateTask() {
     font-size: 20px;
   }
   ::-webkit-input-placeholder {
-    color: colors.$color-text-secondary;
+    color: var(--foreground-secondary);
   }
 }
 </style>

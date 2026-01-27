@@ -14,19 +14,23 @@
   text-rendering: optimizeLegibility;
 }
 
+html {
+  background: var(--background-page);
+}
+
 input {
-  color: colors.$color-text-primary;
+  color: var(--foreground-primary);
   background: none;
   width: 100%;
 }
 
 button {
-  color: colors.$color-text-secondary;
+  color: var(--foreground-secondary);
   background: none;
-  margin-left: 14px;
+  margin-left: 16px;
   font-size: 18px;
   cursor: pointer;
   &:hover {
-    color: colors.$color-text-primary;
+    color: var(--foreground-primary);
   }
 }

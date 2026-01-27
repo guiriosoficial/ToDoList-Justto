@@ -26,8 +26,6 @@
 </template>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
 .about-container {
   height: calc(100vh - 70px);
   display: flex;
@@ -39,7 +37,7 @@
     margin: 0 100px;
     font-size: 22px;
     text-align: center;
-    color: colors.$color-text-primary;
+    color: var(--foreground-primary);
     word-wrap: break-word;
     &:last-of-type {
       margin-top: 8px;
@@ -51,7 +49,7 @@
     gap: 6px;
     margin-top: 22px;
     font-size: 18px;
-    color: colors.$color-primary;
+    color: var(--brand-primary);
   }
   .about-container__credits {
     transform: translateX(-50%);
@@ -59,9 +57,9 @@
     bottom: 20px;
     left: 50%;
     text-align: center;
-    color: colors.$color-text-primary;
+    color: var(--foreground-primary);
     a {
-      color: colors.$color-text-primary;
+      color: var(--foreground-primary);
       text-decoration: underline
     }
   }
