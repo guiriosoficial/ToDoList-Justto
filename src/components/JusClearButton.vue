@@ -2,7 +2,7 @@
   <button
     class="remove-all-button"
     title="Clear List"
-    @click="handleRemoveAll"
+    aria-label="Clear List"
     @click="handleClick"
   >
     <JusIcon icon="trash-alt" />

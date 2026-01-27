@@ -10,6 +10,7 @@
     <button
       class="task-input-container__button"
       title="Add Task"
+      aria-label="Add Task"
       @click="handleCreateTask"
     >
       <JusIcon icon="plus" />

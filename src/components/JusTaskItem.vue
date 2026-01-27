@@ -8,6 +8,7 @@
         <input
           :checked="task.done"
           :title="checkboxTitle"
+          :aria-label="checkboxTitle + ': ' + task.name"
           class="task-item-container__head-checkbox-input"
           type="checkbox"
           @change="handleToggleDone"
@@ -37,13 +38,14 @@
     >
       <button
         title="Edit Task"
-        @click="handleEditTask()"
+        aria-label="Edit task"
         @click="handleStartEdition"
       >
         <JusIcon icon="edit" />
       </button>
       <button
         title="Remove Task"
+        aria-label="Remove task"
         @click="handleRemoveTask"
       >
         <JusIcon icon="trash-alt" />
@@ -55,6 +57,7 @@
     >
       <button
         title="Confirm Edition"
+        aria-label="Confirm edition"
         @click="handleConfirmEdition"
       >
         <JusIcon icon="check" />
@@ -72,7 +75,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch, nextTick } from 'vue'
-import type { ITask } from '@/types'
+import type { ITask } from '@/models/task'
 
 interface ITaskItemProps {
   task: ITask,

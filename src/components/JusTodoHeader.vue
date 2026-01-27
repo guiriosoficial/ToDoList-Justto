@@ -4,11 +4,15 @@
       <h1 class="header-container__logo">
         TODO List
       </h1>
-      <div class="header-container__details">
-        <span>Total: {{ counter.total }}</span>
-        <span>Done: {{ counter.done }}</span>
-        <span>Left: {{ counter.doing }}</span>
-      </div>
+      <ul
+        class="header-container__details"
+        aria-label="Tasks Counter"
+        aria-live="polite"
+      >
+        <li>Total: {{ counter.total }}</li>
+        <li>Done: {{ counter.done }}</li>
+        <li>Left: {{ counter.doing }}</li>
+      </ul>
     </div>
     <RouterLink
       :to="{ name: route.meta.headerButtonLink }"
