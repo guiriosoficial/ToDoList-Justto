@@ -21,14 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-
-export interface ICounter {
-  doing: number,
-  done: number,
-  total: number
-}
+import type { ICounter } from '@/models/counter'
 
 interface ITodoHeaderProps {
   counter?: ICounter

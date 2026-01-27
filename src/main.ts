@@ -1,10 +1,9 @@
 import '@/assets/main.scss'
 
 import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router/index'
 import App from '@/App.vue'
 import JusIcon from "@/components/JusIcon.vue"
+import { router } from '@/router'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 

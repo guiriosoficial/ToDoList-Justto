@@ -4,10 +4,10 @@
 </template>
 
 <script setup lang="ts">
-import TodoHeader, { type ICounter } from '@/components/TodoHeader.vue'
+import JusTodoHeader from '@/components/JusTodoHeader.vue'
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import { ref } from 'vue'
+import type { ICounter } from '@/models/counter'
 
 const counter = ref()
 
