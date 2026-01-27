@@ -7,7 +7,6 @@
       <label class="task-item-container__head-checkbox">
         <input
           :checked="task.done"
-          :title="checkboxTitle"
           :aria-label="checkboxTitle + ': ' + task.name"
           class="task-item-container__head-checkbox-input"
           type="checkbox"
@@ -37,14 +36,12 @@
       class="task-item-container__actions"
     >
       <button
-        title="Edit Task"
         aria-label="Edit task"
         @click="handleStartEdition"
       >
         <JusIcon icon="edit" />
       </button>
       <button
-        title="Remove Task"
         aria-label="Remove task"
         @click="handleRemoveTask"
       >
@@ -56,14 +53,12 @@
       class="task-item-container__actions"
     >
       <button
-        title="Confirm Edition"
         aria-label="Confirm edition"
         @click="handleConfirmEdition"
       >
         <JusIcon icon="check" />
       </button>
       <button
-        title="Cancel Edition"
         aria-label="Cancel edition"
         @click="handleStopEdition"
       >

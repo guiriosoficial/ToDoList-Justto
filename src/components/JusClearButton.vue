@@ -1,7 +1,6 @@
 <template>
   <button
     class="remove-all-button"
-    title="Clear List"
     aria-label="Clear List"
     @click="handleClick"
   >
