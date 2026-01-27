@@ -7,7 +7,8 @@ export const routes = [
     name: 'home',
     component: TodoView,
     meta: {
-      headerButtonTitle: 'ABOUT'
+      headerButtonTitle: 'ABOUT',
+      headerButtonLink: 'about'
     }
   },
   {
@@ -15,7 +16,8 @@ export const routes = [
     name: 'about',
     component: AboutView,
     meta: {
-      headerButtonTitle: 'BACK'
+      headerButtonTitle: 'BACK',
+      headerButtonLink: 'home'
     }
   },
   {

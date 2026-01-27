@@ -11,7 +11,8 @@
       </div>
     </div>
     <RouterLink
-      :to="link"
+      :to="{ name: route.meta.headerButtonLink }"
+      :aria-label="`Go to ${route.meta.headerButtonTitle} page`"
       class="header-container__link"
     >
       {{ route.meta.headerButtonTitle }}
@@ -42,8 +43,6 @@ const {
     total: 0
   }
 } = defineProps<ITodoHeaderProps>()
-
-const link = computed(() => route.meta.headerButtonTitle === 'ABOUT' ? '/about' : '/')
 </script>
 
 <style scoped lang="scss">
