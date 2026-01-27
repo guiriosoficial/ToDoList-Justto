@@ -29,17 +29,16 @@ const taskName = ref('')
 const emit = defineEmits<ITaskInputEmits>()
 
 function handleCreateTask() {
-  if (!taskName.value.trim()) return
+  const trimmedName = taskName.value.trim()
 
-  emit('create-task', taskName.value)
+  if (!trimmedName) return
+
+  emit('create-task', trimmedName)
   taskName.value = ''
-
 }
 </script>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
 .task-input-container {
   display: flex;
   align-items: center;

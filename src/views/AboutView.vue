@@ -16,7 +16,7 @@
     <span class="about-container__credits">
       Made with &hearts; by
       <a
-        href="http://github.com/guiriosoficial"
+        href="https://github.com/guiriosoficial"
         target="_blank"
       >
         guiriosoficial

@@ -27,8 +27,8 @@
         type="text"
         class="task-item-container__head-input"
         @keyup.enter="handleConfirmEdition"
-        @keyup.esc="handleCancelEdition"
-        @blur="handleCancelEdition"
+        @keyup.esc="handleStopEdition"
+        @blur="handleStopEdition"
       >
     </div>
     <div
@@ -38,6 +38,7 @@
       <button
         title="Edit Task"
         @click="handleEditTask()"
+        @click="handleStartEdition"
       >
         <FontAwesomeIcon icon="edit" />
       </button>
@@ -61,6 +62,7 @@
       <button
         title="Cancel Edition"
         @click="handleCancelEdition"
+        @click="handleStopEdition"
       >
         <FontAwesomeIcon icon="close" />
       </button>
@@ -79,7 +81,7 @@ interface ITaskItemProps {
 
 interface ITaskItemEmits {
   (e: 'update-task', task: ITask): void,
-  (e: 'remove-task', task: ITask): void,
+  (e: 'remove-task', task: number): void,
   (e: 'edit-task', taskId: number | null): void
 }
 
@@ -106,28 +108,32 @@ watch(() => isEditing, (newValue) => {
 })
 
 function handleToggleDone() {
-  emit('update-task', { ...task, done: !task.done })
+  const eventPayload = { ...task, done: !task.done }
+  emit('update-task', eventPayload)
 }
 
 function handleRemoveTask() {
-  emit('remove-task', task)
+  emit('remove-task', task.id)
 }
 
-function handleEditTask() {
+function handleStartEdition() {
   emit('edit-task', task.id)
 }
 
+function handleStopEdition() {
+  emit('edit-task', null)
+}
+
 function handleConfirmEdition() {
-  if (!localName.value.trim()) return
+  const trimmedName = localName.value.trim()
 
-  emit('update-task', { ...task, name: localName.value });
-  emit('edit-task', null);
+  if (trimmedName) {
+    const eventPayload = { ...task, name: trimmedName }
+    emit('update-task', eventPayload)
+  }
+
+  handleStopEdition()
 }
-
-function handleCancelEdition() {
-  emit('edit-task', null);
-}
-
 </script>
 
 <style scoped lang="scss">

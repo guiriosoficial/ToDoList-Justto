@@ -1,5 +1,5 @@
 <template>
-  <TodoHeader :counter="counters" />
+  <JusTodoHeader :counter="counter" />
   <RouterView @update-counter="handleUpdateCounter" />
 </template>
 
@@ -8,9 +8,9 @@ import TodoHeader, { type ICounter } from '@/components/TodoHeader.vue'
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
 
-const counters = ref()
+const counter = ref()
 
 function handleUpdateCounter(value: ICounter) {
-  counters.value = value
+  counter.value = value
 }
 </script>

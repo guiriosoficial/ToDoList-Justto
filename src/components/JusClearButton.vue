@@ -1,35 +1,27 @@
 <template>
   <button
-    v-show="number > 0"
     class="remove-all-button"
     title="Clear List"
     @click="handleRemoveAll"
+    @click="handleClick"
   >
     <FontAwesomeIcon icon="trash-alt" />
   </button>
 </template>
 
 <script setup lang="ts">
-interface ICleanTasksProps {
-  number?: number
-}
-
 interface ICleanTasksEmits {
-  (e: 'remove-all'): void
+  (e: 'click'): void
 }
-
-const { number = 0 } = defineProps<ICleanTasksProps>()
 
 const emit = defineEmits<ICleanTasksEmits>()
 
-function handleRemoveAll() {
-  emit('remove-all')
+function handleClick() {
+  emit('click')
 }
 </script>
 
 <style scoped lang="scss">
-@use "../assets/colors";
-
 .remove-all-button {
   position: absolute;
   left: 50%;
