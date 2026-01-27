@@ -40,13 +40,13 @@
         @click="handleEditTask()"
         @click="handleStartEdition"
       >
-        <FontAwesomeIcon icon="edit" />
+        <JusIcon icon="edit" />
       </button>
       <button
         title="Remove Task"
         @click="handleRemoveTask"
       >
-        <FontAwesomeIcon icon="trash-alt" />
+        <JusIcon icon="trash-alt" />
       </button>
     </div>
     <div
@@ -57,14 +57,14 @@
         title="Confirm Edition"
         @click="handleConfirmEdition"
       >
-        <FontAwesomeIcon icon="check" />
+        <JusIcon icon="check" />
       </button>
       <button
         title="Cancel Edition"
-        @click="handleCancelEdition"
+        aria-label="Cancel edition"
         @click="handleStopEdition"
       >
-        <FontAwesomeIcon icon="close" />
+        <JusIcon icon="close" />
       </button>
     </div>
   </li>

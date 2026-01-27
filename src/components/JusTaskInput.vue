@@ -12,7 +12,7 @@
       title="Add Task"
       @click="handleCreateTask"
     >
-      <FontAwesomeIcon icon="plus" />
+      <JusIcon icon="plus" />
     </button>
   </div>
 </template>

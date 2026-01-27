@@ -5,7 +5,7 @@
     @click="handleRemoveAll"
     @click="handleClick"
   >
-    <FontAwesomeIcon icon="trash-alt" />
+    <JusIcon icon="trash-alt" />
   </button>
 </template>
 

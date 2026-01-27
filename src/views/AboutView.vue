@@ -8,7 +8,7 @@
       to="/"
       class="about-container__link"
     >
-      <FontAwesomeIcon icon="arrow-left" />
+      <JusIcon icon="arrow-left" />
       <span>
         <b>Back</b>
       </span>
