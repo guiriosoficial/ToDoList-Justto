@@ -1,32 +1,34 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { AppThemes } from '@/config/appThemes'
+import { LocalStorageKeys } from '@/config/localStorageKeys'
+import { ref, onMounted, computed } from 'vue'
 
-const theme = ref('light')
+const light = AppThemes.LIGHT
+const dark = AppThemes.DARK
+const key = LocalStorageKeys.THEME
+const attribute = 'data-theme'
+
+const theme = ref(light)
+
+const themeIcon = computed(() => theme.value === light ? 'sun' : 'moon')
 
 function handleToggleTheme() {
-  // 1. Inverte o tema
-  const newTheme = theme.value === 'light' ? 'dark' : 'light'
-
-  // 2. Atualiza o estado reativo
+  const newTheme = theme.value === light ? dark : light
   theme.value = newTheme
-
-  // 3. Aplica ao HTML (CSS Selector)
-  document.documentElement.setAttribute('data-theme', newTheme)
-
-  // 4. Persiste no localStorage
-  localStorage.setItem('app-theme', newTheme)
+  document.documentElement.setAttribute(attribute, newTheme)
+  localStorage.setItem(key, newTheme)
 }
 
 onMounted(() => {
-  const savedTheme = localStorage.getItem('app-theme') || 'light'
+  const savedTheme = localStorage.getItem(key) || light
   theme.value = savedTheme
-  document.documentElement.setAttribute('data-theme', savedTheme)
+  document.documentElement.setAttribute(attribute, savedTheme)
 })
 </script>
 
 <template>
   <JusIcon
-    :icon="theme === 'light' ? 'moon' : 'sun'"
+    :icon="themeIcon"
     class="toggle-theme-button"
     @click="handleToggleTheme"
   />
