@@ -8,7 +8,7 @@ const dark = AppThemes.DARK
 const key = LocalStorageKeys.THEME
 const attribute = 'data-theme'
 
-const theme = ref<AppThemes>(light)
+const theme = ref(light)
 
 const themeIcon = computed(() => theme.value === light ? 'sun' : 'moon')
 
