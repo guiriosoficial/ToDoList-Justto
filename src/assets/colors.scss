@@ -1,7 +1,7 @@
 @use "sass:color";
 
 /* ======================================================
-   Brand (imutável – identidade visual)
+   Brand Colors
 ====================================================== */
 $brand-primary: #2993de;
 $brand-primary-light: color.scale($brand-primary, $lightness: +12%);
@@ -9,13 +9,13 @@ $brand-primary-dark: color.scale($brand-primary, $lightness: -18%);
 $brand-on-primary: #ffffff;
 
 /* ======================================================
-   Neutral base
+   Neutral Base
 ====================================================== */
 $white: #fafafa;
 $black: #0f0f10;
 
 /* ======================================================
-   Light theme values
+   Light Theme Values
 ====================================================== */
 $light-bg-page: $white;
 
@@ -29,7 +29,7 @@ $light-fg-secondary: #68686b;
 $light-fg-muted: #808080;
 
 /* ======================================================
-   Dark theme values
+   Dark Theme Values
 ====================================================== */
 $dark-bg-page: $black;
 
@@ -43,7 +43,7 @@ $dark-fg-secondary: #c7c7cc;
 $dark-fg-muted: #8e8e93;
 
 /* ======================================================
-   Dark theme mixin (reutilizável)
+  Dark Theme Mixin
 ====================================================== */
 @mixin theme-dark {
   /* Background */
@@ -87,14 +87,14 @@ $dark-fg-muted: #8e8e93;
 }
 
 /* ======================================================
-   Dark theme — manual override
+   Dark Theme — Manual Override
 ====================================================== */
 [data-theme="dark"] {
   @include theme-dark;
 }
 
 /* ======================================================
-   System preference — automatic fallback
+   System Preference — Automatic Fallback
 ====================================================== */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {

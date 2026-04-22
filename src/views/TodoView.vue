@@ -32,9 +32,7 @@ import JusEmptyState from "@/components/JusEmptyState.vue";
 import { ref, onBeforeMount, watch } from 'vue'
 import type { ICounter } from '@/models/counter'
 import type { ITask } from '@/models/task'
-
-// TODO: Put in global variables
-const LOCAL_STORAGE_KEY = 'jus-todo'
+import {LocalStorageKeys} from "@/config/localStorageKeys.ts";
 
 interface ITodoViewEmits {
   (e: 'update-counter', counter: ICounter): void
@@ -55,14 +53,14 @@ watch(() => list.value, (newValue) => {
 }, { deep: true })
 
 onBeforeMount(() => {
-  const storageItems = localStorage.getItem(LOCAL_STORAGE_KEY)
+  const storageItems = localStorage.getItem(LocalStorageKeys.TODOS)
 
   if (!storageItems) return
 
   try {
     list.value = JSON.parse(storageItems ?? '')
   } catch {
-    localStorage.removeItem(LOCAL_STORAGE_KEY)
+    localStorage.removeItem(LocalStorageKeys.TODOS)
   }
 })
 
@@ -96,7 +94,7 @@ function handleRemoveAll() {
 
 function saveInStorage() {
   const parsed = JSON.stringify(list.value)
-  localStorage.setItem(LOCAL_STORAGE_KEY, parsed)
+  localStorage.setItem(LocalStorageKeys.TODOS, parsed)
 }
 
 watch(list, saveInStorage, { deep: true })

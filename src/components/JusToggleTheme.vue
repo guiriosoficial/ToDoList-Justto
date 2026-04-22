@@ -8,7 +8,7 @@ const dark = AppThemes.DARK
 const key = LocalStorageKeys.THEME
 const attribute = 'data-theme'
 
-const theme = ref(light)
+const theme = ref<AppThemes>(light)
 
 const themeIcon = computed(() => theme.value === light ? 'sun' : 'moon')
 
@@ -20,7 +20,7 @@ function handleToggleTheme() {
 }
 
 onMounted(() => {
-  const savedTheme = localStorage.getItem(key) || light
+  const savedTheme = localStorage.getItem(key) as AppThemes || light
   theme.value = savedTheme
   document.documentElement.setAttribute(attribute, savedTheme)
 })

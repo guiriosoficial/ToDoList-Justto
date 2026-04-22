@@ -1,6 +1,8 @@
 const prefix = 'jus'
 
-export enum LocalStorageKeys {
-  THEME = `${prefix}-theme`,
-  TODOS = `${prefix}-todos`
-}
+export const LocalStorageKeys = {
+  THEME: `${prefix}-theme`,
+  TODOS: `${prefix}-todos`
+} as const
+
+export type LocalStorageKeys = typeof LocalStorageKeys[keyof typeof LocalStorageKeys]
