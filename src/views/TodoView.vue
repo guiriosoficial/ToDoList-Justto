@@ -33,12 +33,14 @@ import { ref, onBeforeMount, watch } from 'vue'
 import type { ICounter } from '@/models/counter'
 import type { ITask } from '@/models/task'
 import {LocalStorageKeys} from "@/config/localStorageKeys.ts";
+import {useLocalStorage} from "@/composables/useLocalStorage.ts";
 
 interface ITodoViewEmits {
   (e: 'update-counter', counter: ICounter): void
 }
 
-const list = ref<ITask[]>([])
+const { state: list } = useLocalStorage<ITask[]>(LocalStorageKeys.TODOS, [])
+
 const editingTaskId = ref<number | null>(null)
 
 const emit = defineEmits<ITodoViewEmits>()
@@ -91,13 +93,6 @@ function handleRemoveAll() {
 
   if (confirmed) list.value = []
 }
-
-function saveInStorage() {
-  const parsed = JSON.stringify(list.value)
-  localStorage.setItem(LocalStorageKeys.TODOS, parsed)
-}
-
-watch(list, saveInStorage, { deep: true })
 </script>
 
 <style scoped lang="scss">
