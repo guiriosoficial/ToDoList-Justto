@@ -39,6 +39,7 @@
     text-align: center;
     color: var(--foreground-primary);
     word-wrap: break-word;
+    text-wrap: balance;
     &:last-of-type {
       margin-top: 8px;
     }
@@ -65,7 +66,7 @@
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .about-container p {
     font-size: 18px;
     margin: 0 20px;
