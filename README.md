@@ -31,6 +31,8 @@ npm run lint:fix
 To maintain this project update, I migrated from Vue 2 to Vue 3, Options API to Composition API, Webpack to Vite and JavaScript to TypeScript
 
 ## TODO
-- Create Tests
+- Create E2E Tests
+- Update Unit Tests
+- Put Styles in Variables
 
 > **Note:** Yes, I got the job :D.

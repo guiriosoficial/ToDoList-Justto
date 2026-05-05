@@ -34,8 +34,8 @@
   flex-direction: column;
   overflow-y: auto;
   p {
-    margin: 0 100px;
-    font-size: 22px;
+    margin: 0 24px;
+    font-size: 1.4rem;
     text-align: center;
     color: var(--foreground-primary);
     word-wrap: break-word;
@@ -63,13 +63,6 @@
       color: var(--foreground-primary);
       text-decoration: underline
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .about-container p {
-    font-size: 18px;
-    margin: 0 20px;
   }
 }
 </style>
