@@ -33,6 +33,7 @@ To maintain this project update, I migrated from Vue 2 to Vue 3, Options API to 
 ## TODO
 - Create E2E Tests
 - Update Unit Tests
-- Put Styles in Variables
+- Put Styles in Variables (Design Tokens)
+- Update README With Test Instructions
 
 > **Note:** Yes, I got the job :D.
